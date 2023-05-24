@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:client": "cd react-client && npm start",
+    "start:server": "cd node-server && Node app.js",
+    "install:client": "cd react-client && npm i",
+    "install:server": "cd node-server  && npm i"
   },
   "repository": {
     "type": "git",
