@@ -26,7 +26,6 @@ app.get("/producto", (req, res) => {
   fs.readFile("./mockData/products.json", "utf8", (err, data) => {
     try {
       const jsonObject = JSON.parse(data);
-      console.log("Parsed JSON object:", jsonObject);
       res.send(jsonObject);
       // Now you can work with the jsonObject as an object
     } catch (error) {

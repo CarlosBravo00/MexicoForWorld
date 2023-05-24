@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Button, Typography } from "@mui/material";
 import { getProductsCall } from "../../services/apiCalls";
 import Product from "../../components/product";
+import "./style.css";
 
 export default function ProductList({ onLogout }) {
   const [products, setProducts] = useState([]);
@@ -22,16 +24,20 @@ export default function ProductList({ onLogout }) {
   return (
     <>
       <div>
-        <button onClick={handleClick}> Logout </button>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ margin: "16px" }}
+          onClick={handleClick}
+        >
+          Logout
+        </Button>
       </div>
 
-      <div>
-        <h1>Productos</h1>
+      <div style={{ margin: "16px" }}>
+        <Typography variant="h4">Productos</Typography>
         {products.map((product) => (
-          <Product
-            nombreProducto={product.nombreProducto}
-            productId={product.productoId}
-          />
+          <Product key={product.productId} product={product} />
         ))}
       </div>
     </>

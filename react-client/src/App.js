@@ -8,8 +8,12 @@ import UserRegister from "./pages/userRegister";
 import { LoginCall, AdminLoginCall } from "./services/apiCalls";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn") === "true"
+  );
+  const [isAdmin, setIsAdmin] = useState(
+    localStorage.getItem("isAdmin") === "true"
+  );
 
   const handleLogin = async (username, password) => {
     try {
@@ -19,6 +23,7 @@ export default function App() {
         // Realizar acciones adicionales, como guardar el token de autenticación en el estado
         console.log("Inicio de sesión exitoso");
         setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", "true");
       } else {
         // El inicio de sesión falló
         // Realizar acciones adicionales, como mostrar un mensaje de error al usuario
@@ -33,16 +38,11 @@ export default function App() {
       const data = await AdminLoginCall({ username, password });
 
       if (data.success) {
-        // El inicio de sesión fue exitoso
-        // Realizar acciones adicionales, como guardar el token de autenticación en el estado
         console.log("Inicio de sesión exitoso");
         setIsAdmin(true);
-      } else {
-        // El inicio de sesión falló
-        // Realizar acciones adicionales, como mostrar un mensaje de error al usuario
+        localStorage.setItem("isAdmin", "true");
       }
     } catch (error) {
-      // Ocurrió un error en la solicitud
       console.log("Error en la solicitud:", error);
     }
   };
@@ -50,6 +50,8 @@ export default function App() {
   const handleLogout = () => {
     setIsAdmin(false);
     setIsLoggedIn(false);
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("isLoggedIn");
   };
 
   let routeElement;

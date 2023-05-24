@@ -1,51 +1,61 @@
 [
   {
     "nombreProducto": "T-Shirt",
+    "productId": "1001",
     "categoriaId": "e3a1b6",
     "descripcion": "A comfortable and versatile t-shirt for everyday wear."
   },
   {
     "nombreProducto": "Jeans",
+    "productId": "1002",
     "categoriaId": "f9c2d7",
     "descripcion": "Classic denim jeans with a stylish and timeless design."
   },
   {
     "nombreProducto": "Dress",
+    "productId": "1003",
     "categoriaId": "g5b9c2",
     "descripcion": "An elegant dress suitable for formal occasions or evening events."
   },
   {
     "nombreProducto": "Sweater",
+    "productId": "1004",
     "categoriaId": "d8e4f7",
     "descripcion": "A cozy and warm sweater perfect for chilly weather."
   },
   {
     "nombreProducto": "Jacket",
+    "productId": "1005",
     "categoriaId": "a7b3c9",
     "descripcion": "A trendy jacket that combines style and functionality."
   },
   {
     "nombreProducto": "Skirt",
+    "productId": "1006",
     "categoriaId": "c4d5e1",
     "descripcion": "A fashionable skirt that can be dressed up or down for various occasions."
   },
   {
     "nombreProducto": "Shirt",
+    "productId": "1007",
     "categoriaId": "f2g8h5",
     "descripcion": "A classic shirt suitable for both casual and formal outfits."
   },
   {
     "nombreProducto": "Blouse",
+    "productId": "1008",
     "categoriaId": "b9c3d6",
     "descripcion": "A chic blouse that adds a touch of sophistication to any ensemble."
   },
   {
     "nombreProducto": "Pants",
+    "productId": "1009",
     "categoriaId": "e1f7g4",
     "descripcion": "Versatile pants that offer both comfort and style for everyday wear."
   },
   {
     "nombreProducto": "Sweatshirt",
+    "productId": "1010",
     "categoriaId": "d5e2f9",
     "descripcion": "A cozy sweatshirt perfect for lounging or casual outings."
   }
