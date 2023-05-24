@@ -1,0 +1,42 @@
+[
+  {
+    "nombreProducto": "T-Shirt",
+    "categoriaId": "e3a1b6"
+  },
+  {
+    "nombreProducto": "Jeans",
+    "categoriaId": "f9c2d7"
+  },
+  {
+    "nombreProducto": "Dress",
+    "categoriaId": "g5b9c2"
+  },
+  {
+    "nombreProducto": "Sweater",
+    "categoriaId": "d8e4f7"
+  },
+  {
+    "nombreProducto": "Jacket",
+    "categoriaId": "a7b3c9"
+  },
+  {
+    "nombreProducto": "Skirtss",
+    "categoriaId": "c4d5e1"
+  },
+  {
+    "nombreProducto": "Shirt",
+    "categoriaId": "f2g8h5"
+  },
+  {
+    "nombreProducto": "Blouse",
+    "categoriaId": "b9c3d6"
+  },
+  {
+    "nombreProducto": "Pants",
+    "categoriaId": "e1f7g4"
+  },
+  {
+    "nombreProducto": "Sweatshirt",
+    "categoriaId": "d5e2f9"
+  }
+]
