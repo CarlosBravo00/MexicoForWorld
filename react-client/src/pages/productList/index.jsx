@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getProductsCall } from "../services/apiCalls";
+import { getProductsCall } from "../../services/apiCalls";
+import Product from "../../components/product";
 
-export default function AdminProductlist({ onLogout }) {
+export default function ProductList({ onLogout }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -24,18 +24,14 @@ export default function AdminProductlist({ onLogout }) {
       <div>
         <button onClick={handleClick}> Logout </button>
       </div>
-      <div>
-        <Link to="/AddProducts">Añadir Productos</Link>
-      </div>
+
       <div>
         <h1>Productos</h1>
         {products.map((product) => (
-          <div key={product.productoId}>
-            <h3>
-              {product.nombreProducto} {product.productoId}{" "}
-            </h3>
-            {/* Mostrar otros detalles del producto */}
-          </div>
+          <Product
+            nombreProducto={product.nombreProducto}
+            productId={product.productoId}
+          />
         ))}
       </div>
     </>

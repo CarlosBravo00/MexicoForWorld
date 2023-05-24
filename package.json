@@ -9,7 +9,9 @@
     "start:server": "cd node-server && Node app.js",
     "start:fake:server": "cd node-server && Node fakeApp.js",
     "install:client": "cd react-client && npm i",
-    "install:server": "cd node-server  && npm i"
+    "i:client": "cd react-client && npm i",
+    "install:server": "cd node-server  && npm i",
+    "i:server": "cd node-server  && npm i"
   },
   "repository": {
     "type": "git",

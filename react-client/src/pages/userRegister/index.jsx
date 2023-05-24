@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { userRegister } from "../services/apiCalls";
+import { userRegister } from "../../services/apiCalls";
 
 export default function UserRegister() {
   const [UserName, setUserName] = useState("");

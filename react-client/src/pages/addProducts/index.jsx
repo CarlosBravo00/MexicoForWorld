@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addProductCall } from "../services/apiCalls";
+import { addProductCall } from "../../services/apiCalls";
 
 export default function AddProducts({ onLogout }) {
   const [nombreProducto, setNombreProducto] = useState("");
