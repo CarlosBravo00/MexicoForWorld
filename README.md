@@ -1,5 +1,7 @@
 # Mexico For World README
 
+README created by ChatGBT
+
 Welcome to my React project! This README will guide you through the installation and running process.
 
 ## Installation
@@ -49,7 +51,6 @@ If you don't need to use SQL for your server, there is an alternative script ava
 - Make sure to configure any environment variables or settings required by the project. Refer to the project's documentation or configuration files for more information.
 
 Thank you for using my React project! If you have any questions or need further assistance, feel free to contact me. 
-README created by ChatGBT
 
 # Creators
 Carlos Bravo
