@@ -36,6 +36,12 @@ To run the server, execute the following command:
 
 This command will start the server-side of the application. Make sure the server is running before interacting with the client. The server might be accessible on a different URL or port depending on your configuration.
 
+### Run Server without SQL
+
+If you don't need to use SQL for your server, there is an alternative script available to run the server. Execute the following command:
+
+`npm run start:fake:server`
+
 ## Additional Information
 
 - If you encounter any issues during the installation or running process, please check the console output for error messages and refer to the project documentation for troubleshooting.
