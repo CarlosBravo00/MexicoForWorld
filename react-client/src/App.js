@@ -5,6 +5,8 @@ import ProductList from "./pages/productList";
 import AdminProductlist from "./pages/adminProducts";
 import AddProducts from "./pages/addProducts";
 import UserRegister from "./pages/userRegister";
+import HomePage from './pages/HomePage';
+import SalesPage from './pages/SalesPage';
 import { LoginCall, AdminLoginCall } from "./services/apiCalls";
 
 export default function App() {
@@ -66,11 +68,10 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={routeElement} />
-        <Route
-          path="/AddProducts"
-          element={<AddProducts onLogout={handleLogout} />}
-        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/ventas" element={<SalesPage />} />
+        <Route path="/login" element={routeElement} />
+        <Route path="/AddProducts" element={<AddProducts onLogout={handleLogout} />}/>
         <Route path="/RegistrarUsuarios" element={<UserRegister />} />
       </Routes>
     </Router>
