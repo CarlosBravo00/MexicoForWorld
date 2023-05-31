@@ -42,7 +42,7 @@
 .menu img {
   height: 35px;
   position: relative;
-  margin-right: 15px;
+  margin-right: 45px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
 }
@@ -72,6 +72,7 @@
 
 .search-bar {
   padding: 5px;
+  width: 300px;
   border: none;
   position: absolute;
   top: 60px;

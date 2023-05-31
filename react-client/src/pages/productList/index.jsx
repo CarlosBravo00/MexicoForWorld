@@ -1,55 +1,36 @@
-// Home.js
 import React, { useState, useEffect } from "react";
 import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
-import Product from "../../components/product";
 import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Carousel from "../../components/carrusel";
 import "./style.css";
 
 export default function Home({ onLogout }) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     async function fetchData() {
-      const productsData = await getProductsCall();
-      const categoriesData = await getCategoriesCall();
-      
-      setProducts(productsData);
-      setCategories(categoriesData);
+      try {
+        const productsData = await getProductsCall();
+        const categoriesData = await getCategoriesCall();
+        setProducts(productsData);
+        setCategories(categoriesData);
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
     }
 
     fetchData();
   }, []);
 
-  const handleClick = () => {
-    onLogout();
-  };
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
     <div>
-      <Header categories={categories} onSearchChange={handleSearchChange} />
+      <Header categories={categories} />
 
-      <div className="products">
-        <h2>Productos</h2>
-        {filteredProducts.map((product) => (
-          <Product key={product.productId} product={product} />
-        ))}
-      </div>
+      <Carousel products={products} />
 
-      <div className="logout-button">
-        <button onClick={handleClick}>
-          Logout
-        </button>
-      </div>
+      <Footer />
     </div>
   );
 }
