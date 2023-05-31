@@ -1,45 +1,55 @@
+// Home.js
 import React, { useState, useEffect } from "react";
-import { Button, Typography } from "@mui/material";
-import { getProductsCall } from "../../services/apiCalls";
+import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
 import Product from "../../components/product";
+import Header from "../../components/header";
 import "./style.css";
 
-export default function ProductList({ onLogout }) {
+export default function Home({ onLogout }) {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    async function getProducts() {
-      const data = await getProductsCall();
-      setProducts(data);
+    async function fetchData() {
+      const productsData = await getProductsCall();
+      const categoriesData = await getCategoriesCall();
+      
+      setProducts(productsData);
+      setCategories(categoriesData);
     }
 
-    getProducts();
+    fetchData();
   }, []);
 
-  const handleClick = (event) => {
-    event.preventDefault();
+  const handleClick = () => {
     onLogout();
   };
 
-  return (
-    <>
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ margin: "16px" }}
-          onClick={handleClick}
-        >
-          Logout
-        </Button>
-      </div>
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
-      <div style={{ margin: "16px" }}>
-        <Typography variant="h4">Productos</Typography>
-        {products.map((product) => (
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div>
+      <Header categories={categories} onSearchChange={handleSearchChange} />
+
+      <div className="products">
+        <h2>Productos</h2>
+        {filteredProducts.map((product) => (
           <Product key={product.productId} product={product} />
         ))}
       </div>
-    </>
+
+      <div className="logout-button">
+        <button onClick={handleClick}>
+          Logout
+        </button>
+      </div>
+    </div>
   );
 }
