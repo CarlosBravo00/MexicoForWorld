@@ -50,8 +50,10 @@ If you don't need to use SQL for your server, there is an alternative script ava
 - Ensure that you have a compatible version of Node.js installed on your machine.
 - Make sure to configure any environment variables or settings required by the project. Refer to the project's documentation or configuration files for more information.
 
-Thank you for using my React project! If you have any questions or need further assistance, feel free to contact me. 
+Thank you for using my React project! If you have any questions or need further assistance, feel free to contact me.
 
 # Creators
+
 Carlos Bravo
 Marcos Frechh
+Luis Ignacio
