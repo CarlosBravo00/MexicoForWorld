@@ -55,3 +55,25 @@ export async function getProductsCall() {
   const data = await response.json();
   return data;
 }
+
+export async function getProductsByCategory(category) {
+  try {
+    const response = await fetch(`http://example.com/api/products?category=${category}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error fetching products:", error);
+    return [];
+  }
+}
+
+export async function getCategoriesCall() {
+  try {
+    const response = await fetch("http://example.com/api/categories");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error fetching categories:", error);
+    return [];
+  }
+}

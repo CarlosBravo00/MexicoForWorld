@@ -54,7 +54,7 @@ app.post("/login", (req, res) => {
 app.post("/loginAdmin", (req, res) => {
   const { username, password } = req.body;
   console.log("Login", username, password);
-  res.status(200).json({ success: true, message: "Inicio de sesión exitoso" });
+  res.status(200).json({ success: false, message: "Inicio de sesión exitoso" });
 });
 
 // Inicialización del servidor

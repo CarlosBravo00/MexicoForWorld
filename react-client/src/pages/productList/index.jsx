@@ -1,45 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { Button, Typography } from "@mui/material";
-import { getProductsCall } from "../../services/apiCalls";
-import Product from "../../components/product";
+import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Carousel from "../../components/carrusel";
 import "./style.css";
 
-export default function ProductList({ onLogout }) {
+export default function Home({ onLogout }) {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    async function getProducts() {
-      const data = await getProductsCall();
-      setProducts(data);
+    async function fetchData() {
+      try {
+        const productsData = await getProductsCall();
+        const categoriesData = await getCategoriesCall();
+        setProducts(productsData);
+        setCategories(categoriesData);
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
     }
 
-    getProducts();
+    fetchData();
   }, []);
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    onLogout();
-  };
-
   return (
-    <>
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ margin: "16px" }}
-          onClick={handleClick}
-        >
-          Logout
-        </Button>
-      </div>
+    <div>
+      <Header categories={categories} />
 
-      <div style={{ margin: "16px" }}>
-        <Typography variant="h4">Productos</Typography>
-        {products.map((product) => (
-          <Product key={product.productId} product={product} />
-        ))}
-      </div>
-    </>
+      <Carousel products={products} />
+
+      <Footer />
+    </div>
   );
 }
