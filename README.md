@@ -57,3 +57,4 @@ Thank you for using my React project! If you have any questions or need further 
 - Carlos Bravo
 - Marcos Frech
 - Luis Ignacio
+- Santiago Franco
