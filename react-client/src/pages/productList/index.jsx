@@ -4,6 +4,7 @@ import Footer from "../../components/footer";
 import Carousel from "../../components/carrusel";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import Product from "../../components/product";
 import "./style.css";
 
 export default function Home() {
@@ -44,13 +45,10 @@ export default function Home() {
       <Carousel products={products} />
       <div className="product-list">
         {products.map((product) => (
-          <div className="product" key={product.productId}>
-            <h3>{product.nombreProducto}</h3>
-            <p>${product.descripcion}</p>
-            <button onClick={() => handleAddToCart(product)}>
-              Add to Cart
-            </button>
-          </div>
+          <Product
+            product={product}
+            handleAddToCart={handleAddToCart}
+          ></Product>
         ))}
       </div>
       <Footer />

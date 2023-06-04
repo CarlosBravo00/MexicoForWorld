@@ -62,7 +62,7 @@ export default function Login({ onLogin }) {
         </Button>
       </form>
       <div style={{ marginTop: "1rem", textAlign: "center" }}>
-        <Link to="/RegistrarUsuarios"> Registro </Link>
+        <Link to="/Register"> Registro </Link>
       </div>
     </Container>
   );

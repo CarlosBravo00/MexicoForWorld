@@ -76,7 +76,7 @@ export default function App() {
             path="/AddProducts"
             element={<AddProducts onLogout={handleLogout} />}
           />
-          <Route path="/RegistrarUsuarios" element={<UserRegister />} />
+          <Route path="/Register" element={<UserRegister />} />
           <Route path="/Cart" element={<ShoppingCart />} />
         </Routes>
       </CartProvider>
