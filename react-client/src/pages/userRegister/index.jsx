@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { userRegister } from "../../services/apiCalls";
+import "./style.css";
 
 export default function UserRegister() {
   const [UserName, setUserName] = useState("");
@@ -29,7 +30,7 @@ export default function UserRegister() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Registro</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -57,10 +58,12 @@ export default function UserRegister() {
           value={Password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button type="submit">Registrarse</button>
+        <button style={{ width: "400px", boxSizing: "content-box" }} type="submit">
+          Registrarse
+        </button>
       </form>
 
-      <div>
+      <div className="link">
         <Link to="/"> Iniciar Sesión </Link>
       </div>
     </div>

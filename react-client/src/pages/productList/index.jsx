@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
 import Footer from "../../components/footer";
-import Carousel from "../../components/carrusel";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import Product from "../../components/product";
@@ -42,7 +41,6 @@ export default function Home() {
 
   return (
     <div>
-      <Carousel products={products} />
       <div className="product-list">
         {products.map((product) => (
           <Product
