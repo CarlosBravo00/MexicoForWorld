@@ -58,7 +58,7 @@ export async function getProductsCall() {
 
 export async function getProductsByCategory(category) {
   try {
-    const response = await fetch(`http://example.com/api/products?category=${category}`);
+    const response = await fetch(`http://example.com/api/products?categoriaId=${category}`);
     const data = await response.json();
     return data;
   } catch (error) {
