@@ -5,6 +5,9 @@ import ProductList from "./pages/productList";
 import AdminProductlist from "./pages/adminProducts";
 import AddProducts from "./pages/addProducts";
 import UserRegister from "./pages/userRegister";
+import ShoppingCart from "./pages/shoppingCart";
+import Header from "./components/header";
+import { CartProvider } from "./services/CartContext";
 import { LoginCall, AdminLoginCall } from "./services/apiCalls";
 
 export default function App() {
@@ -58,21 +61,25 @@ export default function App() {
   if (isLoggedIn && isAdmin) {
     routeElement = <AdminProductlist onLogout={handleLogout} />;
   } else if (isLoggedIn && !isAdmin) {
-    routeElement = <ProductList onLogout={handleLogout} />;
+    routeElement = <ProductList />;
   } else {
     routeElement = <Login onLogin={handleLogin} />;
   }
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={routeElement} />
-        <Route
-          path="/AddProducts"
-          element={<AddProducts onLogout={handleLogout} />}
-        />
-        <Route path="/RegistrarUsuarios" element={<UserRegister />} />
-      </Routes>
+      <CartProvider>
+        {isLoggedIn && !isAdmin ? <Header onLogout={handleLogout} /> : null}
+        <Routes>
+          <Route path="/" element={routeElement} />
+          <Route
+            path="/AddProducts"
+            element={<AddProducts onLogout={handleLogout} />}
+          />
+          <Route path="/RegistrarUsuarios" element={<UserRegister />} />
+          <Route path="/Cart" element={<ShoppingCart />} />
+        </Routes>
+      </CartProvider>
     </Router>
   );
 }
