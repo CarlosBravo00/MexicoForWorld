@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
+import { Select, MenuItem } from "@mui/material";
 import Footer from "../../components/footer";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -11,21 +12,31 @@ export default function Home() {
   const [categories, setCategories] = useState([]);
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const productsData = await getProductsCall();
         const categoriesData = await getCategoriesCall();
-        setProducts(productsData);
         setCategories(categoriesData);
+        if (selectedCategory) {
+          const productsData = await getProductsCall(selectedCategory);
+          setProducts(productsData);
+        } else {
+          const productsData = await getProductsCall();
+          setProducts(productsData);
+        }
       } catch (error) {
         console.log("Error fetching data:", error);
       }
     }
 
     fetchData();
-  }, []);
+  }, [selectedCategory]);
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
 
   const handleAddToCart = (product) => {
     const event = new CustomEvent("addToCart", { detail: product });
@@ -41,12 +52,23 @@ export default function Home() {
 
   return (
     <div>
+      <Select
+        className="select-category"
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+      >
+        <MenuItem value="">All</MenuItem>
+        {categories.map((category) => (
+          <MenuItem value={category}>{category}</MenuItem>
+        ))}
+      </Select>
       <div className="product-list">
         {products.map((product) => (
           <Product
+            key={product.productId}
             product={product}
             handleAddToCart={handleAddToCart}
-          ></Product>
+          />
         ))}
       </div>
       <Footer />

@@ -46,3 +46,11 @@
 .product button:hover {
   background-color: #0056b3;
 }
+
+.select-category {
+  position: relative;
+  padding: 0;
+  left: 10px;
+  width: 100px;
+  margin: 10px;
+}
