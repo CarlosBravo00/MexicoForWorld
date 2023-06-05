@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
   };
   const removeItemFromCart = (itemId) => {
     setCartItems((prevCartItems) =>
-      prevCartItems.filter((item) => item.productId !== itemId)
+      prevCartItems.filter((item) => item.id !== itemId)
     );
   };
 

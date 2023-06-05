@@ -38,13 +38,13 @@ export async function addProductCall({ nombreProducto, categoriaId }) {
   return data;
 }
 
-export async function userRegister({ UserName, FullName, Email, Password }) {
+export async function userRegister({ userName, fullName, email, password }) {
   const response = await fetch("http://localhost:5000/usuarios", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ UserName, FullName, Email, Password }),
+    body: JSON.stringify({ userName, fullName, email, password }),
   });
   const data = await response.json();
   return data;
@@ -58,7 +58,9 @@ export async function getProductsCall() {
 
 export async function getProductsByCategory(category) {
   try {
-    const response = await fetch(`http://example.com/api/products?categoriaId=${category}`);
+    const response = await fetch(
+      `http://localhost:5000/products?categoriaId=${category}`
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -69,7 +71,7 @@ export async function getProductsByCategory(category) {
 
 export async function getCategoriesCall() {
   try {
-    const response = await fetch("http://example.com/api/categories");
+    const response = await fetch("http://localhost:5000/categories");
     const data = await response.json();
     return data;
   } catch (error) {

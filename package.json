@@ -11,7 +11,8 @@
     "install:client": "cd react-client && npm i",
     "i:client": "cd react-client && npm i",
     "install:server": "cd node-server  && npm i",
-    "i:server": "cd node-server  && npm i"
+    "i:server": "cd node-server  && npm i",
+    "reset:server": "cd node-server && Node resetDb.js"
   },
   "repository": {
     "type": "git",

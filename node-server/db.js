@@ -5,6 +5,7 @@ const connection = mysql.createConnection({
   user: "root",
   password: "",
   database: "mydb",
+  multipleStatements: true,
 });
 
 connection.connect((err) => {
@@ -12,4 +13,16 @@ connection.connect((err) => {
   console.log("Connected to MySQL server");
 });
 
-module.exports = connection;
+const executeQuery = (query, values) => {
+  return new Promise((resolve, reject) => {
+    connection.query(query, values, (err, results) => {
+      if (err) reject(err);
+      else resolve(results);
+    });
+  });
+};
+
+module.exports = {
+  connection,
+  executeQuery,
+};

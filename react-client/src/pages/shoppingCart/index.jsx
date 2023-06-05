@@ -27,7 +27,7 @@ const CartPage = () => {
       ) : (
         <div>
           {cartItems.map((item) => (
-            <div className="cart-item" key={item.productId}>
+            <div className="cart-item" key={item.id}>
               <div className="item-details">
                 <Typography variant="h6" className="item-title">
                   {item.nombreProducto}
@@ -38,7 +38,7 @@ const CartPage = () => {
                 <Button
                   variant="outlined"
                   startIcon={<DeleteIcon />}
-                  onClick={() => handleRemoveItem(item.productId)}
+                  onClick={() => handleRemoveItem(item.id)}
                 >
                   Remove
                 </Button>

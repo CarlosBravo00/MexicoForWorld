@@ -18,7 +18,7 @@ export default function Product(props) {
     fetchImage();
   }, [product]);
   return (
-    <div className="product" key={product.productId}>
+    <div className="product" key={product.id}>
       <img src={imageUrl} alt={product.nombreProducto} />
       <h3>{product.nombreProducto}</h3>
       <p>{product.descripcion}</p>

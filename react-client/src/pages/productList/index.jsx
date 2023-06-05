@@ -65,7 +65,7 @@ export default function Home() {
       <div className="product-list">
         {products.map((product) => (
           <Product
-            key={product.productId}
+            key={product.id}
             product={product}
             handleAddToCart={handleAddToCart}
           />
