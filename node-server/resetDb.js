@@ -41,6 +41,19 @@ async function addProducts() {
   console.log("Products Added");
 }
 
+async function addCategories() {
+  const jsonData = fs.readFileSync("./mockData/categories.json");
+  const categorias = JSON.parse(jsonData);
+
+  const insertProductoQuery =
+    "INSERT INTO categoria (nombreCategoria) VALUES ?";
+  const categoriaValues = categorias.map((categoria) => [
+    categoria.nombreCategoria,
+  ]);
+  await executeQuery(insertProductoQuery, [categoriaValues]);
+  console.log("Categories Added");
+}
+
 async function resetDb() {
   try {
     // Read the SQL script from a file
@@ -52,6 +65,7 @@ async function resetDb() {
 
     await addUsers();
     await addProducts();
+    await addCategories();
   } catch (err) {
     console.error("Error executing query:", err);
   } finally {
