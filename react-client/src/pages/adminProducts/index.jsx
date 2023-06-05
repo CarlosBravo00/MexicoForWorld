@@ -2,22 +2,20 @@ import React, { useState, useEffect } from "react";
 import {
   Button,
   Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
+  IconButton,
 } from "@mui/material";
 import { getProductsCall } from "../../services/apiCalls";
 import EditProductDialog from "../../components/editProductAdminPopUp";
 import AddProductDialog from "../../components/addProductAdminPopUp";
 import AddCategoryDialog from "../../components/addCategoryAdminPopUp";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./style.css";
 
 export default function AdminProductlist({ onLogout }) {
@@ -92,22 +90,64 @@ export default function AdminProductlist({ onLogout }) {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Typography variant="h4">Productos</Typography>
-        <div>
-          <Button variant="contained" color="primary" onClick={handleAddProduct} style={{ marginLeft: "16px" }}>
-            Añadir Nuevo Producto
-          </Button>
-          <Button variant="contained" color="primary" onClick={handleAddCategory} style={{ marginLeft: "16px" }}>
-            Añadir Nueva Categoría
-          </Button>
-        </div>
-        <Button variant="contained" color="primary" style={{ margin: "16px" }} onClick={handleClick}>
+      <div
+        style={{
+          paddingTop: "30px",
+          paddingBottom: "30px",
+          backgroundColor: "#282c34",
+          marginBottom: "10px",
+        }}
+      >
+        <Typography
+          variant="h4"
+          style={{ textAlign: "center", color: "#61dafb" }}
+        >
+          Portal Administrativo
+        </Typography>
+        <Button
+          color="primary"
+          style={{
+            clear: "none",
+            float: "right",
+            marginTop: "-45px",
+            marginRight: "20px",
+            color: "#61dafb",
+          }}
+          onClick={handleClick}
+        >
           Logout
         </Button>
       </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ justifySelf: "center", alignSelf: "center" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleAddProduct}
+            style={{ marginLeft: "16px" }}
+          >
+            Añadir Nuevo Producto
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleAddCategory}
+            style={{ marginLeft: "16px" }}
+          >
+            Añadir Nueva Categoría
+          </Button>
+        </div>
+      </div>
 
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}
+      >
         <TableContainer style={{ width: "75%" }}>
           <Table>
             <TableHead>
@@ -127,12 +167,19 @@ export default function AdminProductlist({ onLogout }) {
                   <TableCell>{product.descripcion}</TableCell>
                   <TableCell>
                     <div style={{ display: "flex", gap: "8px" }}>
-                      <Button variant="contained" color="primary" onClick={() => handleEditClick(product)}>
-                        Editar
-                      </Button>
-                      <Button variant="contained" color="secondary" onClick={() => handleDeleteClick(product)} style={{ color: "white", backgroundColor: "red" }}>
-                        Borrar
-                      </Button>
+                      <IconButton
+                        color="primary"
+                        onClick={() => handleEditClick(product)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton
+                        color="secondary"
+                        onClick={() => handleDeleteClick(product)}
+                        style={{ color: "red" }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -165,4 +212,3 @@ export default function AdminProductlist({ onLogout }) {
     </>
   );
 }
-

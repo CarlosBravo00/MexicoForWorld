@@ -267,7 +267,11 @@ app.post("/login", (req, res) => {
             // Las contraseñas coinciden, el inicio de sesión es exitoso
             res
               .status(200)
-              .json({ success: true, message: "Inicio de sesión exitoso" });
+              .json({
+                success: true,
+                message: "Inicio de sesión exitoso",
+                userId: user.id,
+              });
           } else {
             // Las contraseñas no coinciden
             res

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/login";
 import ProductList from "./pages/productList";
 import AdminProductlist from "./pages/adminProducts";
-import AddProducts from "./pages/addProducts";
 import UserRegister from "./pages/userRegister";
 import ShoppingCart from "./pages/shoppingCart";
 import Header from "./components/header";
@@ -25,6 +24,7 @@ export default function App() {
         // El inicio de sesión fue exitoso
         // Realizar acciones adicionales, como guardar el token de autenticación en el estado
         console.log("Inicio de sesión exitoso");
+        localStorage.setItem("userId", data.userId);
         setIsLoggedIn(true);
         localStorage.setItem("isLoggedIn", "true");
       } else {
@@ -55,6 +55,7 @@ export default function App() {
     setIsLoggedIn(false);
     localStorage.removeItem("isAdmin");
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userId");
   };
 
   let routeElement;
@@ -72,10 +73,6 @@ export default function App() {
         {isLoggedIn && !isAdmin ? <Header onLogout={handleLogout} /> : null}
         <Routes>
           <Route path="/" element={routeElement} />
-          <Route
-            path="/AddProducts"
-            element={<AddProducts onLogout={handleLogout} />}
-          />
           <Route path="/Register" element={<UserRegister />} />
           <Route path="/Cart" element={<ShoppingCart />} />
         </Routes>
