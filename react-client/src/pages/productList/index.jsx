@@ -78,7 +78,7 @@ export default function Home() {
           }}
         >
           <Typography style={{ whiteSpace: "nowrap" }}>
-            Pais de Origen
+            Estado de Origen
           </Typography>
           <Select
             className="select-category"
