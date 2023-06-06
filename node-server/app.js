@@ -211,8 +211,9 @@ app.get("/ordenes/:id", (req, res) => {
 // Ruta para crear una orden
 app.post("/ordenes", (req, res) => {
   const orden = req.body;
+  const today = new Date().toISOString();
   executeQuery(
-    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId) VALUES ('${orden.fechaCreacion}', '${orden.cantidadProductos}', '${orden.usuarioId}')`,
+    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId) VALUES ('${today}', '${orden.cantidadProductos}', '${orden.usuarioId}')`,
     (err, result) => {
       if (err) throw err;
       res.send(result);

@@ -79,3 +79,17 @@ export async function getCategoriesCall() {
     return [];
   }
 }
+
+
+export async function addOrderCall({ cantidadProductos, usuarioId }) {
+  const response = await fetch("http://localhost:5000/ordenes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ cantidadProductos, usuarioId }),
+  });
+
+  const data = await response.json();
+  return data;
+}

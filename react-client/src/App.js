@@ -5,6 +5,7 @@ import ProductList from "./pages/productList";
 import AdminProductlist from "./pages/adminProducts";
 import UserRegister from "./pages/userRegister";
 import ShoppingCart from "./pages/shoppingCart";
+import Checkout from "./pages/checkout";
 import Header from "./components/header";
 import { CartProvider } from "./services/CartContext";
 import { LoginCall, AdminLoginCall } from "./services/apiCalls";
@@ -75,6 +76,8 @@ export default function App() {
           <Route path="/" element={routeElement} />
           <Route path="/Register" element={<UserRegister />} />
           <Route path="/Cart" element={<ShoppingCart />} />
+          <Route path="/Checkout" element={<Checkout />} />
+
         </Routes>
       </CartProvider>
     </Router>

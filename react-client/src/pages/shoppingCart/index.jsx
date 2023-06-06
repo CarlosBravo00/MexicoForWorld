@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../services/CartContext";
 import { Typography, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -22,7 +23,7 @@ const CartPage = () => {
       </Typography>
       {cartItems.length === 0 ? (
         <Typography variant="body1" className="empty-cart">
-          Your cart is empty.
+          Your cart is empty :(
         </Typography>
       ) : (
         <div>
@@ -53,9 +54,11 @@ const CartPage = () => {
             >
               Clear Cart
             </Button>
-            <Button variant="contained" className="checkout-button">
-              Checkout
-            </Button>
+            <Link to="/checkout">
+              <Button variant="contained" className="checkout-button">
+                Checkout
+              </Button>
+            </Link>
           </div>
         </div>
       )}
