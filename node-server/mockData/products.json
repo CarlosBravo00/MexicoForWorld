@@ -8,7 +8,7 @@
   },
   {
     "nombreProducto": "Outfit Tulum",
-    "id": "2",
+    "id": 2,
     "categoriaId": "Tulum",
     "descripcion": "Estilo de ropa comun usado en la region de tulum donde uno puede estar fresco y a la moda.",
     "precio": "100 mxn",
