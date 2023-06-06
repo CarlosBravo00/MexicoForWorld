@@ -229,10 +229,19 @@ app.post("/ordenes", (req, res) => {
   const orden = req.body;
   console.log(orden);
   executeQuery(
-    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId) VALUES (CURRENT_DATE(), '${orden.cantidadProductos}', '${orden.usuarioId}')`,
+    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId) VALUES (CURRENT_DATE(), '${orden.cantidadProductos}', '${orden.usuarioId}');
+    `,
     (err, result) => {
       if (err) throw err;
-      res.send(result);
+      const orderId = result.insertId;
+      let query = "";
+      orden.productos.forEach((producto) => {
+        query += `INSERT INTO ordenes_products (productoId, ordenID, cantidad) VALUES ('${producto.id}', '${orderId}', '${producto.cantidad}');`;
+      });
+      executeQuery(query, (err2, result2) => {
+        if (err2) throw err2;
+        res.send(result2);
+      });
     }
   );
 });
@@ -255,6 +264,16 @@ app.put("/ordenes/:id", (req, res) => {
 app.delete("/ordenes/:id", (req, res) => {
   const id = req.params.id;
   executeQuery(`DELETE FROM ordenes WHERE ordenId=${id}`, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+//Ruta para obtener ordenes de un cliente
+app.get("/usuario/ordenes/:id", (req, res) => {
+  const id = req.params.id;
+  executeQuery(`SELECT * FROM ordenes WHERE usuarioId=${id}`, (err, result) => {
+    console.log(result);
     if (err) throw err;
     res.send(result);
   });

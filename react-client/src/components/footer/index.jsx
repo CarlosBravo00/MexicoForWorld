@@ -9,18 +9,17 @@ const Footer = () => {
         <h2>Información de la empresa</h2>
         <p>MEXICO FOR THE WORLD SA DE CV</p>
         <p>
-          ¿Quienes somos? Somos una empresa responsable del cuidado del medio
-          ambiente como tambien nos enfocamos en brindar un servicio de calidad
-          a nuestros clientes
+          Somos una empresa dedicada a compartir la riqueza de los productos
+          típicos y originarios de México. Nuestro objetivo es acercar a
+          personas de todo el mundo a la diversidad y autenticidad de la cultura
+          mexicana a través de sus sabores y tradiciones culinarias. Trabajamos
+          directamente con productores locales y artesanos para ofrecer
+          productos de la más alta calidad, elaborados de manera sostenible y
+          respetando las prácticas tradicionales. ¡Únete a nosotros y descubre
+          la auténtica esencia de México en cada bocado!
         </p>
-        <p>
-          Cualquier duda, comentario, opiniones o inforamarnos de nuestros
-          errores favor de comunicarlos apra que las personas encargadas puedan
-          hacer caso y solucionar los problemas .
-        </p>
-        <p>Nos pueden contactar a los siguientes telefonos: 9999494949</p>
       </div>
-      <div className="contact-form">
+      {/* <div className="contact-form">
         <div style={{ width: "70%" }}>
           <h2>Solicitar más información</h2>
           <form>
@@ -30,7 +29,7 @@ const Footer = () => {
             <button type="submit">Enviar</button>
           </form>
         </div>
-      </div>
+      </div> */}
       <div className="social-media">
         <h2>Síguenos en redes sociales</h2>
         <div className="social-icons">
@@ -63,6 +62,10 @@ const Footer = () => {
             <LinkedIn />
           </a>
         </div>
+        <p>
+          Nos pueden contactar a los siguientes telefonos: 9999494949 &
+          123124512
+        </p>
       </div>
     </div>
   );
