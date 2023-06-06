@@ -10,6 +10,7 @@ import WorkInProgressPage from "./pages/workInProgress";
 import NotFoundPage from "./pages/notFound";
 import ProductPage from "./pages/productPage";
 import Header from "./components/header";
+import UserPage from "./pages/userPage";
 import { CartProvider } from "./services/CartContext";
 import { LoginCall, AdminLoginCall } from "./services/apiCalls";
 
@@ -87,7 +88,7 @@ export default function App() {
               <Route path="/featured" element={<WorkInProgressPage />} />
               <Route path="/promotions" element={<WorkInProgressPage />} />
               <Route path="/settings" element={<WorkInProgressPage />} />
-              <Route path="/profile" element={<WorkInProgressPage />} />
+              <Route path="/profile" element={<UserPage />} />
             </>
           ) : null}
           <Route path="*" element={<NotFoundPage />} />

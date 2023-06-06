@@ -118,7 +118,7 @@ export async function addOrderCall({
   });
 
   const data = await response.json();
-  
+
   return data;
 }
 
@@ -169,4 +169,17 @@ export async function deleteProductCall({ productoId }) {
 
   const data = await response.json();
   return data;
+}
+
+export async function getUserOrders({ userId }) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/usuario/ordenes/${userId}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error fetching orders:", error);
+    return [];
+  }
 }
