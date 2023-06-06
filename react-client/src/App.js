@@ -6,6 +6,8 @@ import AdminProductlist from "./pages/adminProducts";
 import UserRegister from "./pages/userRegister";
 import ShoppingCart from "./pages/shoppingCart";
 import Checkout from "./pages/checkout";
+import WorkInProgressPage from "./pages/workInProgress";
+import NotFoundPage from "./pages/notFound";
 import Header from "./components/header";
 import { CartProvider } from "./services/CartContext";
 import { LoginCall, AdminLoginCall } from "./services/apiCalls";
@@ -74,10 +76,19 @@ export default function App() {
         {isLoggedIn && !isAdmin ? <Header onLogout={handleLogout} /> : null}
         <Routes>
           <Route path="/" element={routeElement} />
-          <Route path="/Register" element={<UserRegister />} />
-          <Route path="/Cart" element={<ShoppingCart />} />
-          <Route path="/Checkout" element={<Checkout />} />
-
+          <Route path="/register" element={<UserRegister />} />
+          {isLoggedIn ? (
+            <>
+              <Route path="/cart" element={<ShoppingCart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/about" element={<WorkInProgressPage />} />
+              <Route path="/featured" element={<WorkInProgressPage />} />
+              <Route path="/promotions" element={<WorkInProgressPage />} />
+              <Route path="/settings" element={<WorkInProgressPage />} />
+              <Route path="/profile" element={<WorkInProgressPage />} />
+            </>
+          ) : null}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </CartProvider>
     </Router>

@@ -8,8 +8,6 @@ CREATE TABLE usuarios (
     password VARCHAR(100)
 );
 
-
-
 DROP TABLE IF EXISTS categoria;
 
 CREATE TABLE categoria (
@@ -24,7 +22,7 @@ CREATE TABLE producto (
     nombreProducto VARCHAR(100),
     descripcion VARCHAR(100),
     imagenId VARCHAR(100),
-    categoriaId INT FOREIGN KEY REFERENCES categoria(id)
+    categoriaId INT
 );
 
 DROP TABLE IF EXISTS ordenes;
@@ -33,6 +31,5 @@ CREATE TABLE ordenes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     fechaCreacion DATE,
     cantidadProductos INT,
-    usuarioId INT FOREIGN KEY REFERENCES usuarios(id)
-
+    usuarioId INT
 );

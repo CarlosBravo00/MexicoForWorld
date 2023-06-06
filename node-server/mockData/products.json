@@ -2,85 +2,84 @@
   {
     "nombreProducto": "Outfit Tulum",
     "id": 1,
-    "categoriaId": "Tulum",
+    "categoriaId": 1,
     "descripcion": "Estilo de ropa comun usado en la region de tulum donde uno puede estar fresco y a la moda.",
     "imagenId": "TulumStyle.jpeg"
   },
   {
     "nombreProducto": "Outfit Tulum",
     "id": 2,
-    "categoriaId": "Tulum",
+    "categoriaId": 1,
     "descripcion": "Estilo de ropa comun usado en la region de tulum donde uno puede estar fresco y a la moda.",
-    "precio": "100 mxn",
     "imagenId": "TulumStyle2.jpg"
   },
   {
     "nombreProducto": "Primera Equipacion Deportiva Mexico",
     "id": 3,
-    "categoriaId": "Mexico",
+    "categoriaId": 2,
     "descripcion": "Camisa oficial de la seleccion de Mexico para el mundial de futbol 2022.",
     "imagenId": "Mexicoshirt.webp"
   },
   {
     "nombreProducto": "Segunda Equipacion Deportiva Mexico",
     "id": 4,
-    "categoriaId": "Mexico",
+    "categoriaId": 2,
     "descripcion": "Camisa oficial de la seleccion de Mexico para el mundial de futbol 2022.",
     "imagenId": "Mexicoshirt2.webp"
   },
   {
     "nombreProducto": "Bandera de Mexico",
     "id": 5,
-    "categoriaId": "Mexico",
+    "categoriaId": 2,
     "descripcion": "Bandera Ofical de Mexico para usar en conciertos, festivales, etc.",
     "imagenId": "MexicoBandera.webp"
   },
   {
     "nombreProducto": "Banderas miniatura de Mexico",
     "id": 6,
-    "categoriaId": "Mexico",
+    "categoriaId": 2,
     "descripcion": "Bandera Ofical de Mexico para usar de decoracion en oficinas o casas.",
     "imagenId": "MexicoBandera2.png"
   },
   {
     "nombreProducto": "Hipil Clasico Yucateco",
     "id": 7,
-    "categoriaId": "Yucatan",
+    "categoriaId": 3,
     "descripcion": "Vestido original hecho en yucatan para lucir en eventos especiales.",
     "imagenId": "Hipil.jpeg"
   },
   {
     "nombreProducto": "Hipil Moderno Yucateco",
     "id": 8,
-    "categoriaId": "Yucatan",
+    "categoriaId": 3,
     "descripcion": "Vestido original hecho en yucatan para lucir en eventos especiales.",
     "imagenId": "Hipil2.jpg"
   },
   {
     "nombreProducto": "Guayabera",
     "id": 9,
-    "categoriaId": "Yucatan",
+    "categoriaId": 3,
     "descripcion": "Guayabera hecha en la ciudad de valladolid ideal para lucir en eventos importantes",
     "imagenId": "Guayabera.webp"
   },
   {
     "nombreProducto": "Guayabera Regional",
     "id": 10,
-    "categoriaId": "Yucatan",
+    "categoriaId": 3,
     "descripcion": "Guayabera hecha en la ciudad de valladolid ideal para lucir en eventos importantes",
     "imagenId": "Guayabera2.webp"
   },
   {
     "nombreProducto": "Cafe Oaxaqueño",
     "id": 11,
-    "categoriaId": "Oaxaca",
+    "categoriaId": 4,
     "descripcion": "Cafe originario del estado de oaxaca con un toque especial",
     "imagenId": "CafeOaxaca.jpg"
   },
   {
     "nombreProducto": "Cafe Oaxaca",
     "id": 12,
-    "categoriaId": "Oaxaca",
+    "categoriaId": 4,
     "descripcion": "Cafe originario del estado de oaxaca con un toque especial",
     "imagenId": "CafeOaxaca2.jpg"
   }

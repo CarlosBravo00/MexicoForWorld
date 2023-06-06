@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem, Typography, InputLabel } from "@mui/material";
 import { CartContext } from "../../services/CartContext";
 import Footer from "../../components/footer";
 import Snackbar from "@mui/material/Snackbar";
@@ -21,6 +21,7 @@ export default function Home() {
     async function fetchData() {
       try {
         const categoriesData = await getCategoriesCall();
+        console.log(categoriesData);
         setCategories(categoriesData);
         if (selectedCategory) {
           const productsData = await getProductsCall(selectedCategory);
@@ -57,16 +58,42 @@ export default function Home() {
 
   return (
     <div>
-      <Select
-        className="select-category"
-        value={selectedCategory}
-        onChange={handleCategoryChange}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "20px 30px",
+        }}
       >
-        <MenuItem value="">All</MenuItem>
-        {categories.map((category) => (
-          <MenuItem value={category}>{category}</MenuItem>
-        ))}
-      </Select>
+        <Typography variant="h4" className="title-text">
+          ¡Productos Orgullosamente Mexicanos!
+        </Typography>
+        <div
+          style={{
+            width: "30%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography style={{ whiteSpace: "nowrap" }}>
+            Pais de Origen
+          </Typography>
+          <Select
+            className="select-category"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
+            <MenuItem value="">All</MenuItem>
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.nombreCategoria}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+      </div>
       <div className="product-list">
         {products.map((product) => (
           <Product

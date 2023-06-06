@@ -1,14 +1,18 @@
 [
   {
     "id": 1,
-    "nombreCategoria": "Electronics"
+    "nombreCategoria": "Tulum"
   },
   {
     "id": 2,
-    "nombreCategoria": "Clothing"
+    "nombreCategoria": "Mexico"
   },
   {
     "id": 3,
-    "nombreCategoria": "Home Decor"
+    "nombreCategoria": "Yucatan"
+  },
+  {
+    "id": 4,
+    "nombreCategoria": "Oaxaca"
   }
 ]

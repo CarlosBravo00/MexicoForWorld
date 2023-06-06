@@ -71,7 +71,7 @@ export async function getProductsByCategory(category) {
 
 export async function getCategoriesCall() {
   try {
-    const response = await fetch("http://localhost:5000/categories");
+    const response = await fetch("http://localhost:5000/categoria");
     const data = await response.json();
     return data;
   } catch (error) {
