@@ -7,6 +7,8 @@ build/
 # Ignore development environment files
 .env
 
+.vscode
+
 # Ignore dependency lock files
 package-lock.json
 yarn.lock

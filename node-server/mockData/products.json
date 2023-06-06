@@ -1,72 +1,86 @@
 [
   {
-    "nombreProducto": "T-Shirt",
+    "nombreProducto": "Outfit Tulum",
     "id": 1,
     "categoriaId": 1,
-    "descripcion": "A comfortable and versatile t-shirt for everyday wear.",
-    "imagenId": "random2.jpeg"
+    "descripcion": "Estilo de ropa comun usado en la region de tulum donde uno puede estar fresco y a la moda.",
+    "imagenId": "TulumStyle.jpeg"
   },
   {
-    "nombreProducto": "Jeans",
+    "nombreProducto": "Outfit Tulum",
     "id": 2,
-    "categoriaId": 2,
-    "descripcion": "Classic denim jeans with a stylish and timeless design.",
-    "imagenId": "random.png"
-  },
-  {
-    "nombreProducto": "Dress",
-    "id": 3,
     "categoriaId": 1,
-    "descripcion": "An elegant dress suitable for formal occasions or evening events.",
-    "imagenId": "random2.jpeg"
+    "descripcion": "Estilo de ropa comun usado en la region de tulum donde uno puede estar fresco y a la moda.",
+    "imagenId": "TulumStyle2.jpg"
   },
   {
-    "nombreProducto": "Sweater",
+    "nombreProducto": "Primera Equipacion Deportiva Mexico",
+    "id": 3,
+    "categoriaId": 2,
+    "descripcion": "Camisa oficial de la seleccion de Mexico para el mundial de futbol 2022.",
+    "imagenId": "Mexicoshirt.webp"
+  },
+  {
+    "nombreProducto": "Segunda Equipacion Deportiva Mexico",
     "id": 4,
     "categoriaId": 2,
-    "descripcion": "A cozy and warm sweater perfect for chilly weather.",
-    "imagenId": "random.png"
+    "descripcion": "Camisa oficial de la seleccion de Mexico para el mundial de futbol 2022.",
+    "imagenId": "Mexicoshirt2.webp"
   },
   {
-    "nombreProducto": "Jacket",
+    "nombreProducto": "Bandera de Mexico",
     "id": 5,
-    "categoriaId": 1,
-    "descripcion": "A trendy jacket that combines style and functionality.",
-    "imagenId": "random.png"
+    "categoriaId": 2,
+    "descripcion": "Bandera Ofical de Mexico para usar en conciertos, festivales, etc.",
+    "imagenId": "MexicoBandera.webp"
   },
   {
-    "nombreProducto": "Skirt",
+    "nombreProducto": "Banderas miniatura de Mexico",
     "id": 6,
-    "categoriaId": 1,
-    "descripcion": "A fashionable skirt that can be dressed up or down for various occasions.",
-    "imagenId": "random2.jpeg"
+    "categoriaId": 2,
+    "descripcion": "Bandera Ofical de Mexico para usar de decoracion en oficinas o casas.",
+    "imagenId": "MexicoBandera2.png"
   },
   {
-    "nombreProducto": "Shirt",
+    "nombreProducto": "Hipil Clasico Yucateco",
     "id": 7,
     "categoriaId": 3,
-    "descripcion": "A classic shirt suitable for both casual and formal outfits.",
-    "imagenId": "random.png"
+    "descripcion": "Vestido original hecho en yucatan para lucir en eventos especiales.",
+    "imagenId": "Hipil.jpeg"
   },
   {
-    "nombreProducto": "Blouse",
+    "nombreProducto": "Hipil Moderno Yucateco",
     "id": 8,
     "categoriaId": 3,
-    "descripcion": "A chic blouse that adds a touch of sophistication to any ensemble.",
-    "imagenId": "random2.jpeg"
+    "descripcion": "Vestido original hecho en yucatan para lucir en eventos especiales.",
+    "imagenId": "Hipil2.jpg"
   },
   {
-    "nombreProducto": "Pants",
+    "nombreProducto": "Guayabera",
     "id": 9,
-    "categoriaId": 1,
-    "descripcion": "Versatile pants that offer both comfort and style for everyday wear.",
-    "imagenId": "random.png"
+    "categoriaId": 3,
+    "descripcion": "Guayabera hecha en la ciudad de valladolid ideal para lucir en eventos importantes",
+    "imagenId": "Guayabera.webp"
   },
   {
-    "nombreProducto": "Sweatshirt",
-    "id": 1010,
-    "categoriaId": 2,
-    "descripcion": "A cozy sweatshirt perfect for lounging or casual outings.",
-    "imagenId": "random2.jpeg"
+    "nombreProducto": "Guayabera Regional",
+    "id": 10,
+    "categoriaId": 3,
+    "descripcion": "Guayabera hecha en la ciudad de valladolid ideal para lucir en eventos importantes",
+    "imagenId": "Guayabera2.webp"
+  },
+  {
+    "nombreProducto": "Cafe Oaxaqueño",
+    "id": 11,
+    "categoriaId": 4,
+    "descripcion": "Cafe originario del estado de oaxaca con un toque especial",
+    "imagenId": "CafeOaxaca.jpg"
+  },
+  {
+    "nombreProducto": "Cafe Oaxaca",
+    "id": 12,
+    "categoriaId": 4,
+    "descripcion": "Cafe originario del estado de oaxaca con un toque especial",
+    "imagenId": "CafeOaxaca2.jpg"
   }
 ]

@@ -27,21 +27,25 @@ const Header = (props) => {
     setIsUserMenuOpen(false);
   };
 
-  const handleCartClick = () => {
-    history("/cart");
-  };
-
   return (
     <div className="header">
       <div className="top-section">
-        <div className="logo">
+        <div className="logo" onClick={() => history("/")}>
           <img src="logo192.png" alt="Logo" />
         </div>
-        <div className="company-name">Mexico For The World</div>
+        <div className="company-name" onClick={() => history("/")}>
+          Mexico For The World
+        </div>
         <div className="menu">
-          <div className="cart-menu" onClick={handleCartClick}>
+          <div className="cart-menu" onClick={() => history("/cart")}>
             <ShoppingCartIcon className="cart-icon" />
-            <span className="cart-item-count">{cartItems.length ?? 0}</span>
+            <span className="cart-item-count">
+              {cartItems.reduce(
+                (accumulator, currentObject) =>
+                  accumulator + currentObject.cantidad,
+                0
+              ) ?? 0}
+            </span>
           </div>
           <AccountCircleIcon className="user-icon" onClick={handleUserClick} />
         </div>
@@ -58,9 +62,16 @@ const Header = (props) => {
             horizontal: "right",
           }}
         >
-          <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
-          <MenuItem onClick={handleCloseUserMenu}>Settings</MenuItem>
-          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          <MenuItem onClick={() => history("/profile")}>Profile</MenuItem>
+          <MenuItem onClick={() => history("/settings")}>Settings</MenuItem>
+          <MenuItem
+            onClick={() => {
+              history("/");
+              handleLogout();
+            }}
+          >
+            Logout
+          </MenuItem>
         </Menu>
       </div>
       <div className="bottom-section">

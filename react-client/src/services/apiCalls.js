@@ -25,20 +25,35 @@ export async function AdminLoginCall({ username, password }) {
   return data;
 }
 
-export async function addProductCall({ nombreProducto, categoriaId }) {
+export async function addProductCall({
+  nombreProducto,
+  descripcion,
+  categoriaId,
+  imagenId,
+}) {
   const response = await fetch("http://localhost:5000/producto", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ nombreProducto, categoriaId }),
+    body: JSON.stringify({
+      nombreProducto,
+      descripcion,
+      categoriaId,
+      imagenId,
+    }),
   });
 
   const data = await response.json();
   return data;
 }
 
-export async function userRegister({ userName, fullName, email, password }) {
+export async function userRegisterCall({
+  userName,
+  fullName,
+  email,
+  password,
+}) {
   const response = await fetch("http://localhost:5000/usuarios", {
     method: "POST",
     headers: {
@@ -51,16 +66,14 @@ export async function userRegister({ userName, fullName, email, password }) {
 }
 
 export async function getProductsCall() {
-  const response = await fetch("http://localhost:5000/producto");
+  const response = await fetch("http://localhost:5000/productos");
   const data = await response.json();
   return data;
 }
 
 export async function getProductsByCategory(category) {
   try {
-    const response = await fetch(
-      `http://localhost:5000/products?categoriaId=${category}`
-    );
+    const response = await fetch(`http://localhost:5000/productos/${category}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -69,9 +82,20 @@ export async function getProductsByCategory(category) {
   }
 }
 
+export async function getProductById(id) {
+  try {
+    const response = await fetch(`http://localhost:5000/producto/${id}`);
+    const data = await response.json();
+    return data[0];
+  } catch (error) {
+    console.log("Error fetching products:", error);
+    return [];
+  }
+}
+
 export async function getCategoriesCall() {
   try {
-    const response = await fetch("http://localhost:5000/categories");
+    const response = await fetch("http://localhost:5000/categoria");
     const data = await response.json();
     return data;
   } catch (error) {
@@ -80,17 +104,69 @@ export async function getCategoriesCall() {
   }
 }
 
-
-export async function addOrderCall({ cantidadProductos, usuarioId }) {
+export async function addOrderCall({
+  cantidadProductos,
+  usuarioId,
+  productos,
+}) {
   const response = await fetch("http://localhost:5000/ordenes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ cantidadProductos, usuarioId }),
+    body: JSON.stringify({ cantidadProductos, usuarioId, productos }),
   });
 
   const data = await response.json();
   
+  return data;
+}
+
+export async function addCategoryCall({ nombreCategoria }) {
+  const response = await fetch("http://localhost:5000/categoria", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ nombreCategoria }),
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+export async function editProduct({
+  nombreProducto,
+  descripcion,
+  categoriaId,
+  imagenId,
+  productoId,
+}) {
+  const response = await fetch(`http://localhost:5000/producto/${productoId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nombreProducto,
+      descripcion,
+      categoriaId,
+      imagenId,
+    }),
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+export async function deleteProductCall({ productoId }) {
+  const response = await fetch(`http://localhost:5000/producto/${productoId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
   return data;
 }

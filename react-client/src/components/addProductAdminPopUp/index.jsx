@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { addProductCall, editProduct } from "../../services/apiCalls";
 import {
   Dialog,
   DialogTitle,
@@ -14,19 +15,64 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel,
 } from "@mui/material";
 
-export default function AddProductDialog({ open, handleClose, product, handleTableEdit, handleSaveChanges }) {
-    const categories = [
-      { id: 1, name: "Electronics" },
-      { id: 2, name: "Clothing" },
-      { id: 3, name: "Home Decor" },
-    ];
-  
-    return (
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Añadir Nuevo Producto</DialogTitle>
+export default function AddProductDialog({
+  open,
+  handleClose,
+  handleConfirm,
+  product,
+  categories,
+  isEdit,
+}) {
+  const [nombre, setNombre] = useState(product ? product.nombreProducto : "");
+  const [descripcion, setDescripcion] = useState(
+    product ? product.descripcion : ""
+  );
+  const [categoria, setCategoria] = useState(
+    product ? product.categoriaId : ""
+  );
+  const [imagenId, setImagenId] = useState(product ? product.imagenId : "");
+
+  const handleNombreChange = (event) => {
+    setNombre(event.target.value);
+  };
+  const handleDescripcionChange = (event) => {
+    setDescripcion(event.target.value);
+  };
+  const handleCategoriaChange = (event) => {
+    setCategoria(event.target.value);
+  };
+  const handleImagenIdChange = (event) => {
+    setImagenId(event.target.value);
+  };
+
+  async function handleSaveChanges() {
+    if (isEdit) {
+      await editProduct({
+        productoId: product.id,
+        nombreProducto: nombre,
+        descripcion,
+        categoriaId: categoria,
+        imagenId,
+      });
+    } else {
+      await addProductCall({
+        nombreProducto: nombre,
+        descripcion,
+        categoriaId: categoria,
+        imagenId,
+      });
+    }
+    await handleConfirm();
+  }
+
+  return (
+    <Dialog open={open} onClose={handleClose} fullWidth>
+      <div style={{ padding: "20px 30px 20px 30px" }}>
+        <DialogTitle>
+          {isEdit ? "Editar Producto" : "Añadir Nuevo Producto"}
+        </DialogTitle>
         <DialogContent>
           <TableContainer>
             <Table>
@@ -35,8 +81,10 @@ export default function AddProductDialog({ open, handleClose, product, handleTab
                   <TableCell>Nombre</TableCell>
                   <TableCell>
                     <TextField
-                      value={product ? product.nombreProducto : ""}
-                      onChange={(event) => handleTableEdit(event, "nombreProducto")}
+                      size="small"
+                      fullWidth
+                      value={nombre}
+                      onChange={handleNombreChange}
                     />
                   </TableCell>
                 </TableRow>
@@ -44,29 +92,41 @@ export default function AddProductDialog({ open, handleClose, product, handleTab
                   <TableCell>Descripción</TableCell>
                   <TableCell>
                     <TextField
-                      value={product ? product.descripcion : ""}
-                      onChange={(event) => handleTableEdit(event, "descripcion")}
+                      multiline
+                      rows={2}
+                      fullWidth
+                      value={descripcion}
+                      onChange={handleDescripcionChange}
                     />
                   </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Categoría</TableCell>
                   <TableCell>
-                    <FormControl style={{ minWidth: "150px" }}>
-                      <InputLabel id="category-label">Categoría</InputLabel>
+                    <FormControl style={{ minWidth: "100%" }}>
                       <Select
-                        labelId="category-label"
-                        id="category-select"
-                        value={product ? product.categoria : ""}
-                        onChange={(event) => handleTableEdit(event, "categoria")}
+                        size="small"
+                        fullWidth
+                        value={categoria}
+                        onChange={handleCategoriaChange}
                       >
                         {categories.map((category) => (
                           <MenuItem key={category.id} value={category.id}>
-                            {category.name}
+                            {category.nombreCategoria}
                           </MenuItem>
                         ))}
                       </Select>
                     </FormControl>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Imagen ID</TableCell>
+                  <TableCell>
+                    <TextField
+                      size="small"
+                      value={imagenId}
+                      onChange={handleImagenIdChange}
+                    />
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -77,11 +137,15 @@ export default function AddProductDialog({ open, handleClose, product, handleTab
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button variant="contained" color="primary" onClick={handleSaveChanges}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSaveChanges}
+          >
             Añadir Producto
           </Button>
         </DialogActions>
-      </Dialog>
-    );
-  }
-  
+      </div>
+    </Dialog>
+  );
+}

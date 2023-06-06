@@ -17,7 +17,7 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <Container maxWidth="xs" style={{ marginTop: 40}}>
+    <Container maxWidth="xs" style={{ marginTop: 40 }}>
       <Typography
         variant="h4"
         component="h1"
@@ -62,7 +62,7 @@ export default function Login({ onLogin }) {
         </Button>
       </form>
       <div style={{ marginTop: "1rem", textAlign: "center" }}>
-        <Link to="/Register"> Registro </Link>
+        <Link to="/register"> Registro </Link>
       </div>
     </Container>
   );

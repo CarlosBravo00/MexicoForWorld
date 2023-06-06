@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
-import { Select, MenuItem } from "@mui/material";
+import React, { useState, useEffect, useContext } from "react";
+import {
+  getProductsCall,
+  getCategoriesCall,
+  getProductsByCategory,
+} from "../../services/apiCalls";
+import { Select, MenuItem, Typography } from "@mui/material";
+import { CartContext } from "../../services/CartContext";
 import Footer from "../../components/footer";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -14,13 +19,15 @@ export default function Home() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
+  const { addItemToCart } = useContext(CartContext); // Adición de contexto
+
   useEffect(() => {
     async function fetchData() {
       try {
         const categoriesData = await getCategoriesCall();
         setCategories(categoriesData);
         if (selectedCategory) {
-          const productsData = await getProductsCall(selectedCategory);
+          const productsData = await getProductsByCategory(selectedCategory);
           setProducts(productsData);
         } else {
           const productsData = await getProductsCall();
@@ -39,9 +46,8 @@ export default function Home() {
   };
 
   const handleAddToCart = (product) => {
-    const event = new CustomEvent("addToCart", { detail: product });
-    document.dispatchEvent(event);
-
+    const productWithQuantity = { ...product, cantidad: 1 };
+    addItemToCart(productWithQuantity);
     setSnackbarMessage("Product added to cart");
     setIsSnackbarOpen(true);
   };
@@ -52,16 +58,42 @@ export default function Home() {
 
   return (
     <div>
-      <Select
-        className="select-category"
-        value={selectedCategory}
-        onChange={handleCategoryChange}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "20px 30px",
+        }}
       >
-        <MenuItem value="">All</MenuItem>
-        {categories.map((category) => (
-          <MenuItem value={category}>{category}</MenuItem>
-        ))}
-      </Select>
+        <Typography variant="h4" className="title-text">
+          ¡Productos Orgullosamente Mexicanos!
+        </Typography>
+        <div
+          style={{
+            width: "30%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography style={{ whiteSpace: "nowrap" }}>
+            Estado de Origen
+          </Typography>
+          <Select
+            className="select-category"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
+            <MenuItem value="">All</MenuItem>
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.nombreCategoria}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+      </div>
       <div className="product-list">
         {products.map((product) => (
           <Product

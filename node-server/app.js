@@ -34,7 +34,7 @@ app.get("/usuarios/:id", (req, res) => {
 // Ruta para crear un usuario
 app.post("/usuarios", async (req, res) => {
   const usuario = req.body;
-
+  console.log(usuario);
   try {
     const hashedpassword = await bcrypt.hash(usuario.password, 10);
     executeQuery(
@@ -78,18 +78,27 @@ app.delete("/usuarios/:id", (req, res) => {
 //PRODUCTOS
 
 // Ruta para obtener todos los productos
-app.get("/producto", (req, res) => {
+app.get("/productos", (req, res) => {
   executeQuery("SELECT * FROM producto", (err, result) => {
     if (err) throw err;
     res.send(result);
   });
 });
 
-// Ruta para obtener un producto por id
+// Ruta para obtener un producto por  id
 app.get("/producto/:id", (req, res) => {
   const id = req.params.id;
+  executeQuery(`SELECT * FROM producto WHERE id=${id}`, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+// Ruta para obtener un producto por categoria id
+app.get("/productos/:id", (req, res) => {
+  const id = req.params.id;
   executeQuery(
-    `SELECT * FROM producto WHERE productoId=${id}`,
+    `SELECT * FROM producto WHERE categoriaId=${id}`,
     (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -101,7 +110,9 @@ app.get("/producto/:id", (req, res) => {
 app.post("/producto", (req, res) => {
   const producto = req.body;
   executeQuery(
-    `INSERT INTO producto (nombreProducto, categoriaId) VALUES ('${producto.nombreProducto}', '${producto.categoriaId}')`,
+    `INSERT INTO producto(nombreProducto, descripcion, categoriaId, imagenId) 
+    VALUES ('${producto.nombreProducto}', '${producto.descripcion}',
+     '${producto.categoriaId}', '${producto.imagenId}')`,
     (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -115,7 +126,12 @@ app.put("/producto/:id", (req, res) => {
   const producto = req.body;
   console.log(req.body);
   executeQuery(
-    `UPDATE producto SET nombreProducto='${producto.nombreProducto}', categoriaId='${producto.categoriaId}' WHERE productoId=${id}`,
+    `UPDATE producto 
+    SET nombreProducto='${producto.nombreProducto}',
+    descripcion='${producto.descripcion}', 
+    categoriaId='${producto.categoriaId}',
+    imagenId='${producto.imagenId}'
+    WHERE id=${id}`,
     (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -126,7 +142,7 @@ app.put("/producto/:id", (req, res) => {
 // Ruta para eliminar un producto
 app.delete("/producto/:id", (req, res) => {
   const id = req.params.id;
-  executeQuery(`DELETE FROM producto WHERE productoId=${id}`, (err, result) => {
+  executeQuery(`DELETE FROM producto WHERE id=${id}`, (err, result) => {
     if (err) throw err;
     res.send(result);
   });
@@ -211,9 +227,9 @@ app.get("/ordenes/:id", (req, res) => {
 // Ruta para crear una orden
 app.post("/ordenes", (req, res) => {
   const orden = req.body;
-  const today = new Date().toISOString();
+  console.log(orden);
   executeQuery(
-    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId) VALUES ('${today}', '${orden.cantidadProductos}', '${orden.usuarioId}')`,
+    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId) VALUES (CURRENT_DATE(), '${orden.cantidadProductos}', '${orden.usuarioId}')`,
     (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -266,13 +282,11 @@ app.post("/login", (req, res) => {
 
           if (match) {
             // Las contraseñas coinciden, el inicio de sesión es exitoso
-            res
-              .status(200)
-              .json({
-                success: true,
-                message: "Inicio de sesión exitoso",
-                userId: user.id,
-              });
+            res.status(200).json({
+              success: true,
+              message: "Inicio de sesión exitoso",
+              userId: user.id,
+            });
           } else {
             // Las contraseñas no coinciden
             res

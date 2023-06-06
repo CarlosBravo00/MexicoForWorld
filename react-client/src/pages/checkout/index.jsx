@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { getProductsCall, addProductCall, addOrderCall } from "../../services/apiCalls";
+import React, { useState } from "react";
+import { addOrderCall } from "../../services/apiCalls";
 
 import {
   Typography,
@@ -9,14 +9,14 @@ import {
   Select,
   MenuItem,
   Button,
-} from '@mui/material';
+} from "@mui/material";
 
 function CheckoutPage() {
-  const [fullName, setFullName] = useState('');
-  const [address, setAddress] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [paypalEmail, setPaypalEmail] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [paypalEmail, setPaypalEmail] = useState("");
 
   const handleFullNameChange = (e) => {
     setFullName(e.target.value);
@@ -42,36 +42,35 @@ function CheckoutPage() {
     e.preventDefault();
 
     // Realizar acciones adicionales, como enviar los datos a un servidor
-    const id =  localStorage.getItem("userId");
+    const id = localStorage.getItem("userId");
     async function createOrder() {
       try {
         const orderData = {
           cantidadProductos: 5,
-          usuarioId: {id},
+          usuarioId: id,
         };
-    
+
         const response = await addOrderCall(orderData);
-        console.log('Orden creada:', response);
+        console.log("Orden creada:", response);
       } catch (error) {
-        console.error('Error al crear la orden:', error);
+        console.error("Error al crear la orden:", error);
       }
     }
-    
+
     createOrder();
-    
+
     // Reiniciar los campos del formulario
-    setFullName('');
-    setAddress('');
-    setPaymentMethod('');
-    setCardNumber('');
-    setPaypalEmail('');
+    setFullName("");
+    setAddress("");
+    setPaymentMethod("");
+    setCardNumber("");
+    setPaypalEmail("");
   };
 
   return (
     <div>
       <Typography variant="h4">Checkout</Typography>
       <form onSubmit={handleSubmit}>
-    
         <FormControl>
           <InputLabel id="paymentMethod-label">Método de pago</InputLabel>
           <Select
@@ -86,7 +85,7 @@ function CheckoutPage() {
             <MenuItem value="paypal">PayPal</MenuItem>
           </Select>
         </FormControl>
-        {paymentMethod === 'creditCard' && (
+        {paymentMethod === "creditCard" && (
           <TextField
             label="Número de tarjeta"
             value={cardNumber}
@@ -94,7 +93,7 @@ function CheckoutPage() {
             required
           />
         )}
-        {paymentMethod === 'paypal' && (
+        {paymentMethod === "paypal" && (
           <TextField
             label="Correo electrónico de PayPal"
             value={paypalEmail}
