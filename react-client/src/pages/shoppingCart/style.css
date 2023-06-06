@@ -2,14 +2,18 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fefefe;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .cart-title {
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .empty-cart {
+  margin-top: 10px;
   text-align: center;
 }
 

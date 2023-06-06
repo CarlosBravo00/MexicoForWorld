@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
-import { Select, MenuItem, Typography, InputLabel } from "@mui/material";
+import { Select, MenuItem, Typography } from "@mui/material";
 import { CartContext } from "../../services/CartContext";
 import Footer from "../../components/footer";
 import Snackbar from "@mui/material/Snackbar";
@@ -43,11 +43,8 @@ export default function Home() {
   };
 
   const handleAddToCart = (product) => {
-    // Creamos un nuevo objeto basado en el producto original, añadiendo la propiedad de cantidad
     const productWithQuantity = { ...product, cantidad: 1 };
-
-    addItemToCart(productWithQuantity); // Usamos el contexto para agregar el artículo al carrito
-
+    addItemToCart(productWithQuantity);
     setSnackbarMessage("Product added to cart");
     setIsSnackbarOpen(true);
   };

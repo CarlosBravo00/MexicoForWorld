@@ -8,7 +8,11 @@ import {
   Button,
 } from "@mui/material";
 
-export default function AddCategoryDialog({ open, handleClose, handleConfirm }) {
+export default function AddCategoryDialog({
+  open,
+  handleClose,
+  handleConfirm,
+}) {
   const [categoryName, setCategoryName] = useState("");
 
   const handleInputChange = (event) => {
@@ -27,23 +31,30 @@ export default function AddCategoryDialog({ open, handleClose, handleConfirm }) 
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Añadir Nueva Categoría</DialogTitle>
-      <DialogContent>
-        <TextField
-          label="Nombre de Categoría"
-          value={categoryName}
-          onChange={handleInputChange}
-          fullWidth
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleCancel} color="primary">
-          Cancelar
-        </Button>
-        <Button variant="contained" color="primary" onClick={handleConfirmClick}>
-          Confirmar
-        </Button>
-      </DialogActions>
+      <div style={{ padding: "20px 30px 20px 30px" }}>
+        <DialogTitle>Añadir Nueva Categoría</DialogTitle>
+        <DialogContent style={{ marginTop: "10px" }}>
+          <TextField
+            label="Nombre de Categoría"
+            size="small"
+            value={categoryName}
+            onChange={handleInputChange}
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions style={{ width: "90%" }}>
+          <Button onClick={handleCancel} color="primary">
+            Cancelar
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleConfirmClick}
+          >
+            Confirmar
+          </Button>
+        </DialogActions>
+      </div>
     </Dialog>
   );
 }

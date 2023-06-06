@@ -31,11 +31,15 @@ const CartPage = () => {
         Shopping Cart
       </Typography>
       {cartItems.length === 0 ? (
-        <Typography variant="body1" className="empty-cart">
+        <Typography
+          variant="body1"
+          className="empty-cart"
+          style={{ marginTop: "20px" }}
+        >
           Your cart is empty, add product to proceed
         </Typography>
       ) : (
-        <div>
+        <div style={{ marginTop: "40px" }}>
           {cartItems.map((item) => (
             <div className="cart-item" key={item.id}>
               <div className="item-details">
@@ -65,14 +69,13 @@ const CartPage = () => {
                     </IconButton>
                   </div>
                 </div>
-                <Button
-                  variant="outlined"
+                <IconButton
                   className="botoneliminar"
-                  startIcon={<DeleteIcon />}
                   onClick={() => handleRemoveItem(item.id)}
+                  style={{ color: "red" }}
                 >
-                  Remove
-                </Button>
+                  <DeleteIcon />
+                </IconButton>
               </div>
             </div>
           ))}

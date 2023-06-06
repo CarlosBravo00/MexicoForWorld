@@ -11,7 +11,6 @@ import {
   IconButton,
 } from "@mui/material";
 import { getProductsCall } from "../../services/apiCalls";
-import EditProductDialog from "../../components/editProductAdminPopUp";
 import AddProductDialog from "../../components/addProductAdminPopUp";
 import AddCategoryDialog from "../../components/addCategoryAdminPopUp";
 import EditIcon from "@mui/icons-material/Edit";
@@ -20,57 +19,32 @@ import "./style.css";
 
 export default function AdminProductlist({ onLogout }) {
   const [products, setProducts] = useState([]);
-  const [openDialog, setOpenDialog] = useState(false); // State for dialog visibility
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [openAddProductDialog, setOpenAddProductDialog] = useState(false);
   const [openAddCategoryDialog, setOpenAddCategoryDialog] = useState(false);
 
-  useEffect(() => {
-    async function getProducts() {
-      const data = await getProductsCall();
-      setProducts(data);
-    }
+  async function getProducts() {
+    const data = await getProductsCall();
+    setProducts(data);
+  }
 
+  useEffect(() => {
     getProducts();
   }, []);
 
-  const handleClick = (event) => {
+  const handleLogout = (event) => {
     event.preventDefault();
     onLogout();
   };
 
   const handleAddProduct = () => {
+    setSelectedProduct(null);
     setOpenAddProductDialog(true);
-  };
-
-  const handleAddCategory = () => {
-    setOpenAddCategoryDialog(true);
   };
 
   const handleEditClick = (product) => {
     setSelectedProduct(product);
-    setOpenDialog(true);
-  };
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
-
-  const handleTableEdit = (event, field) => {
-    const { value } = event.target;
-    setSelectedProduct((prevProduct) => ({
-      ...prevProduct,
-      [field]: value,
-    }));
-  };
-
-  const handleSaveChanges = () => {
-    // Implement logic to save changes made in the dialog
-    handleCloseDialog();
-  };
-
-  const handleCloseAddProductDialog = () => {
-    setOpenAddProductDialog(false);
+    setOpenAddProductDialog(true);
   };
 
   const handleDeleteClick = (product) => {
@@ -81,10 +55,6 @@ export default function AdminProductlist({ onLogout }) {
   const handleAddCategoryConfirm = (categoryName) => {
     // Implement logic to add the new category
     console.log("New category name:", categoryName);
-    setOpenAddCategoryDialog(false);
-  };
-
-  const handleAddCategoryCancel = () => {
     setOpenAddCategoryDialog(false);
   };
 
@@ -113,7 +83,7 @@ export default function AdminProductlist({ onLogout }) {
             marginRight: "20px",
             color: "#61dafb",
           }}
-          onClick={handleClick}
+          onClick={handleLogout}
         >
           Logout
         </Button>
@@ -137,7 +107,9 @@ export default function AdminProductlist({ onLogout }) {
           <Button
             variant="contained"
             color="primary"
-            onClick={handleAddCategory}
+            onClick={() => {
+              setOpenAddCategoryDialog(true);
+            }}
             style={{ marginLeft: "16px" }}
           >
             Añadir Nueva Categoría
@@ -188,27 +160,25 @@ export default function AdminProductlist({ onLogout }) {
           </Table>
         </TableContainer>
       </div>
-      <AddProductDialog
-        open={openAddProductDialog}
-        handleClose={handleCloseAddProductDialog}
-        product={null} // Pass null or an initial product object if needed
-        handleTableEdit={handleTableEdit}
-        handleSaveChanges={handleSaveChanges}
-      />
-
-      <AddCategoryDialog
-        open={openAddCategoryDialog}
-        handleClose={handleAddCategoryCancel}
-        handleConfirm={handleAddCategoryConfirm}
-      />
-
-      <EditProductDialog
-        open={openDialog}
-        handleClose={handleCloseDialog}
-        product={selectedProduct}
-        handleTableEdit={handleTableEdit}
-        handleSaveChanges={handleSaveChanges}
-      />
+      {openAddCategoryDialog && (
+        <AddCategoryDialog
+          open={openAddCategoryDialog}
+          handleClose={() => setOpenAddCategoryDialog(false)}
+          handleConfirm={handleAddCategoryConfirm}
+        />
+      )}
+      {openAddProductDialog && (
+        <AddProductDialog
+          open={openAddProductDialog}
+          product={selectedProduct}
+          isEdit={selectedProduct ? true : false}
+          handleClose={() => setOpenAddProductDialog(false)}
+          handleConfirm={() => {
+            setOpenAddProductDialog(false);
+            getProducts();
+          }}
+        />
+      )}
     </>
   );
 }
