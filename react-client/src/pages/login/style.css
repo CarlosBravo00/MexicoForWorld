@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100 vh;
 }
 
 .left-section {
@@ -35,12 +34,14 @@
 }
 
 .form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .text-input {
+  width: 100%;
   margin-bottom: 10px;
 }
 

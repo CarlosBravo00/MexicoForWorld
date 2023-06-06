@@ -42,6 +42,6 @@ CREATE TABLE ordenes_products (
     productoId INT,
     ordenID INT,
     cantidad INT,
-    FOREIGN KEY (productoId) REFERENCES producto (id),
-    FOREIGN KEY (ordenID) REFERENCES ordenes (id)
+    FOREIGN KEY (productoId) REFERENCES producto (id) ON DELETE SET NULL,
+    FOREIGN KEY (ordenID) REFERENCES ordenes (id) ON DELETE SET NULL
 )

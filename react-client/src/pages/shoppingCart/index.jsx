@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../services/CartContext";
 import { addOrderCall } from "../../services/apiCalls";
 import { Typography, Button, IconButton } from "@mui/material";
@@ -11,6 +11,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import "./style.css";
 
 const CartPage = () => {
+  const navigate = useNavigate();
+
   const { cartItems, removeItemFromCart, clearCart, updateItemQuantity } =
     useContext(CartContext);
 
@@ -40,7 +42,8 @@ const CartPage = () => {
         productos: cartItems,
       });
       alert("Orden Creada");
-      handleClearCart();
+      clearCart();
+      navigate("/profile");
     }
   }
 

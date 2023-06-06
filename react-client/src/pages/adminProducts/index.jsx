@@ -20,12 +20,15 @@ import AddProductDialog from "../../components/addProductAdminPopUp";
 import AddCategoryDialog from "../../components/addCategoryAdminPopUp";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import "./style.css";
 
 export default function AdminProductlist({ onLogout }) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [openAddProductDialog, setOpenAddProductDialog] = useState(false);
   const [openAddCategoryDialog, setOpenAddCategoryDialog] = useState(false);
@@ -67,11 +70,34 @@ export default function AdminProductlist({ onLogout }) {
     await addCategoryCall({ nombreCategoria });
     setOpenAddCategoryDialog(false);
     await fetchData();
-    alert("Categoria Creada");
+    triggerSnackbar("Categoria Creada");
   };
+
+  function triggerSnackbar(message) {
+    setSnackbarMessage(message);
+    setIsSnackbarOpen(true);
+  }
 
   return (
     <>
+      <Snackbar
+        open={isSnackbarOpen}
+        autoHideDuration={1000}
+        onClose={() => {
+          setIsSnackbarOpen(false);
+        }}
+        style={{ top: "5%", left: "50%", transform: "translate(-50%, -50%)" }}
+      >
+        <MuiAlert
+          onClose={() => {
+            setIsSnackbarOpen(false);
+          }}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
       <div
         style={{
           paddingTop: "30px",
@@ -187,7 +213,7 @@ export default function AdminProductlist({ onLogout }) {
           isEdit={selectedProduct ? true : false}
           handleClose={() => setOpenAddProductDialog(false)}
           handleConfirm={() => {
-            alert("Producto Creado/Editado");
+            triggerSnackbar("Producto Creado/Editado");
             setOpenAddProductDialog(false);
             fetchData();
           }}

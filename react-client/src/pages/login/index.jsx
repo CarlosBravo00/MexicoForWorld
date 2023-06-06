@@ -20,8 +20,13 @@ export default function Login({ onLogin }) {
         <img src="logo192.png" alt="Login" className="login-image" />
       </div>
       <div className="right-section">
-        <Typography variant="h4" align="center" gutterBottom className="heading">
-          Página de inicio
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          className="heading"
+        >
+          Login
         </Typography>
         <form onSubmit={handleSubmit} className="form">
           <TextField
