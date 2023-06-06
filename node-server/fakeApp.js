@@ -22,7 +22,7 @@ app.post("/usuarios", async (req, res) => {
 //PRODUCTOS
 
 // Ruta para obtener todos los productos
-app.get("/producto", (req, res) => {
+app.get("/productos", (req, res) => {
   fs.readFile("./mockData/products.json", "utf8", (err, data) => {
     try {
       const jsonObject = JSON.parse(data);
