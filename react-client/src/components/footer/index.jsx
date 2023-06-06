@@ -40,7 +40,6 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <Facebook />
-            <img src="Bolsatulum.jpeg" alt="Facebook" />
           </a>
           <a
             href="https://twitter.com"

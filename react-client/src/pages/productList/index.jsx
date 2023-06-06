@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { getProductsCall, getCategoriesCall } from "../../services/apiCalls";
+import {
+  getProductsCall,
+  getCategoriesCall,
+  getProductsByCategory,
+} from "../../services/apiCalls";
 import { Select, MenuItem, Typography } from "@mui/material";
 import { CartContext } from "../../services/CartContext";
 import Footer from "../../components/footer";
@@ -21,10 +25,9 @@ export default function Home() {
     async function fetchData() {
       try {
         const categoriesData = await getCategoriesCall();
-        console.log(categoriesData);
         setCategories(categoriesData);
         if (selectedCategory) {
-          const productsData = await getProductsCall(selectedCategory);
+          const productsData = await getProductsByCategory(selectedCategory);
           setProducts(productsData);
         } else {
           const productsData = await getProductsCall();

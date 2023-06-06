@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { userRegister } from "../../services/apiCalls";
+import { Link, useNavigate } from "react-router-dom";
+import { userRegisterCall } from "../../services/apiCalls";
 import "./style.css";
 
 export default function UserRegister() {
+  const history = useNavigate();
+
   const [UserName, setUserName] = useState("");
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
@@ -11,10 +13,17 @@ export default function UserRegister() {
 
   const onRegister = async (UserName, FullName, Email, Password) => {
     try {
-      const data = await userRegister({ UserName, FullName, Email, Password });
+      const data = await userRegisterCall({
+        userName: UserName,
+        fullName: FullName,
+        email: Email,
+        password: Password,
+      });
+      console.log(data);
 
-      if (data.success) {
-        console.log("Usuario creado");
+      if (data.affectedRows) {
+        history("/");
+        alert("Usuario creado");
       } else {
         console.log("Error al crear usuario");
       }
@@ -58,7 +67,10 @@ export default function UserRegister() {
           value={Password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button style={{ width: "400px", boxSizing: "content-box" }} type="submit">
+        <button
+          style={{ width: "400px", boxSizing: "content-box" }}
+          type="submit"
+        >
           Registrarse
         </button>
       </form>

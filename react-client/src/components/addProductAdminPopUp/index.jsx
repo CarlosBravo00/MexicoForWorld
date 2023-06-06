@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { addProductCall, editProduct } from "../../services/apiCalls";
 import {
   Dialog,
   DialogTitle,
@@ -21,39 +22,53 @@ export default function AddProductDialog({
   handleClose,
   handleConfirm,
   product,
+  categories,
   isEdit,
 }) {
   const [nombre, setNombre] = useState(product ? product.nombreProducto : "");
   const [descripcion, setDescripcion] = useState(
     product ? product.descripcion : ""
   );
-  const [categoria, setCategoria] = useState(product ? product.categoria : "");
-
-  const categories = [
-    { id: 1, name: "Electronics" },
-    { id: 2, name: "Clothing" },
-    { id: 3, name: "Home Decor" },
-  ];
+  const [categoria, setCategoria] = useState(
+    product ? product.categoriaId : ""
+  );
+  const [imagenId, setImagenId] = useState(product ? product.imagenId : "");
 
   const handleNombreChange = (event) => {
     setNombre(event.target.value);
   };
-
   const handleDescripcionChange = (event) => {
     setDescripcion(event.target.value);
   };
-
   const handleCategoriaChange = (event) => {
     setCategoria(event.target.value);
   };
+  const handleImagenIdChange = (event) => {
+    setImagenId(event.target.value);
+  };
 
   async function handleSaveChanges() {
-    console.log("saving");
+    if (isEdit) {
+      await editProduct({
+        productoId: product.id,
+        nombreProducto: nombre,
+        descripcion,
+        categoriaId: categoria,
+        imagenId,
+      });
+    } else {
+      await addProductCall({
+        nombreProducto: nombre,
+        descripcion,
+        categoriaId: categoria,
+        imagenId,
+      });
+    }
     await handleConfirm();
   }
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} fullWidth>
       <div style={{ padding: "20px 30px 20px 30px" }}>
         <DialogTitle>
           {isEdit ? "Editar Producto" : "Añadir Nuevo Producto"}
@@ -67,6 +82,7 @@ export default function AddProductDialog({
                   <TableCell>
                     <TextField
                       size="small"
+                      fullWidth
                       value={nombre}
                       onChange={handleNombreChange}
                     />
@@ -78,6 +94,7 @@ export default function AddProductDialog({
                     <TextField
                       multiline
                       rows={2}
+                      fullWidth
                       value={descripcion}
                       onChange={handleDescripcionChange}
                     />
@@ -95,11 +112,21 @@ export default function AddProductDialog({
                       >
                         {categories.map((category) => (
                           <MenuItem key={category.id} value={category.id}>
-                            {category.name}
+                            {category.nombreCategoria}
                           </MenuItem>
                         ))}
                       </Select>
                     </FormControl>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Imagen ID</TableCell>
+                  <TableCell>
+                    <TextField
+                      size="small"
+                      value={imagenId}
+                      onChange={handleImagenIdChange}
+                    />
                   </TableCell>
                 </TableRow>
               </TableBody>

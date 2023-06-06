@@ -10,7 +10,12 @@ import {
   TableRow,
   IconButton,
 } from "@mui/material";
-import { getProductsCall } from "../../services/apiCalls";
+import {
+  getProductsCall,
+  getCategoriesCall,
+  addCategoryCall,
+  deleteProductCall,
+} from "../../services/apiCalls";
 import AddProductDialog from "../../components/addProductAdminPopUp";
 import AddCategoryDialog from "../../components/addCategoryAdminPopUp";
 import EditIcon from "@mui/icons-material/Edit";
@@ -19,17 +24,24 @@ import "./style.css";
 
 export default function AdminProductlist({ onLogout }) {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [openAddProductDialog, setOpenAddProductDialog] = useState(false);
   const [openAddCategoryDialog, setOpenAddCategoryDialog] = useState(false);
 
-  async function getProducts() {
-    const data = await getProductsCall();
-    setProducts(data);
+  async function fetchData() {
+    try {
+      const categoriesData = await getCategoriesCall();
+      const productsData = await getProductsCall();
+      setCategories(categoriesData);
+      setProducts(productsData);
+    } catch (error) {
+      console.log("Error fetching data:", error);
+    }
   }
-
   useEffect(() => {
-    getProducts();
+    fetchData();
   }, []);
 
   const handleLogout = (event) => {
@@ -46,16 +58,16 @@ export default function AdminProductlist({ onLogout }) {
     setSelectedProduct(product);
     setOpenAddProductDialog(true);
   };
-
-  const handleDeleteClick = (product) => {
-    // Implement logic for deleting the product
-    console.log("Delete product:", product);
+  const handleDeleteClick = async (product) => {
+    await deleteProductCall({ productoId: product.id });
+    await fetchData();
   };
 
-  const handleAddCategoryConfirm = (categoryName) => {
-    // Implement logic to add the new category
-    console.log("New category name:", categoryName);
+  const handleAddCategoryConfirm = async (nombreCategoria) => {
+    await addCategoryCall({ nombreCategoria });
     setOpenAddCategoryDialog(false);
+    await fetchData();
+    alert("Categoria Creada");
   };
 
   return (
@@ -169,13 +181,15 @@ export default function AdminProductlist({ onLogout }) {
       )}
       {openAddProductDialog && (
         <AddProductDialog
+          categories={categories}
           open={openAddProductDialog}
           product={selectedProduct}
           isEdit={selectedProduct ? true : false}
           handleClose={() => setOpenAddProductDialog(false)}
           handleConfirm={() => {
+            alert("Producto Creado/Editado");
             setOpenAddProductDialog(false);
-            getProducts();
+            fetchData();
           }}
         />
       )}

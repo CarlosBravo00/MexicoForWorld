@@ -64,8 +64,8 @@ async function resetDb() {
     console.log("SQL script executed successfully");
 
     await addUsers();
-    await addProducts();
     await addCategories();
+    await addProducts();
   } catch (err) {
     console.error("Error executing query:", err);
   } finally {

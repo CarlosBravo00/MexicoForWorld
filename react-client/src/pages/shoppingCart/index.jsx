@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../services/CartContext";
+import { addOrderCall } from "../../services/apiCalls";
 import { Typography, Button, IconButton } from "@mui/material";
 import ProductImage from "../../components/productImage";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -24,6 +25,24 @@ const CartPage = () => {
   const handleChangeItemQuantity = (itemId, change) => {
     updateItemQuantity(itemId, change);
   };
+
+  async function handleCheckout() {
+    const cantidadProductos =
+      cartItems.reduce(
+        (accumulator, currentObject) => accumulator + currentObject.cantidad,
+        0
+      ) ?? 0;
+    if (cantidadProductos > 0) {
+      const usuarioId = localStorage.getItem("userId");
+      await addOrderCall({
+        cantidadProductos,
+        usuarioId,
+        productos: cartItems,
+      });
+      alert("Orden Creada");
+      handleClearCart();
+    }
+  }
 
   return (
     <div className="cart-container">
@@ -87,11 +106,13 @@ const CartPage = () => {
             >
               Clear Cart
             </Button>
-            <Link to="/checkout">
-              <Button variant="contained" className="checkout-button">
-                Checkout
-              </Button>
-            </Link>
+            <Button
+              variant="contained"
+              className="checkout-button"
+              onClick={handleCheckout}
+            >
+              Checkout
+            </Button>
           </div>
         </div>
       )}
