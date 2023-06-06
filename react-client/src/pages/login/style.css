@@ -1,5 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100 vh;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f5f5f5;
+}
+
 .heading {
   margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #333;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .text-input {
@@ -8,4 +46,15 @@
 
 .submit-button {
   margin-top: 1rem;
+}
+
+a {
+  font-family: Arial, sans-serif;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #000;
 }
