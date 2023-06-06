@@ -78,15 +78,24 @@ app.delete("/usuarios/:id", (req, res) => {
 //PRODUCTOS
 
 // Ruta para obtener todos los productos
-app.get("/producto", (req, res) => {
+app.get("/productos", (req, res) => {
   executeQuery("SELECT * FROM producto", (err, result) => {
     if (err) throw err;
     res.send(result);
   });
 });
 
-// Ruta para obtener un producto por categoria id
+// Ruta para obtener un producto por  id
 app.get("/producto/:id", (req, res) => {
+  const id = req.params.id;
+  executeQuery(`SELECT * FROM producto WHERE id=${id}`, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+// Ruta para obtener un producto por categoria id
+app.get("/productos/:id", (req, res) => {
   const id = req.params.id;
   executeQuery(
     `SELECT * FROM producto WHERE categoriaId=${id}`,

@@ -66,16 +66,27 @@ export async function userRegisterCall({
 }
 
 export async function getProductsCall() {
-  const response = await fetch("http://localhost:5000/producto");
+  const response = await fetch("http://localhost:5000/productos");
   const data = await response.json();
   return data;
 }
 
 export async function getProductsByCategory(category) {
   try {
-    const response = await fetch(`http://localhost:5000/producto/${category}`);
+    const response = await fetch(`http://localhost:5000/productos/${category}`);
     const data = await response.json();
     return data;
+  } catch (error) {
+    console.log("Error fetching products:", error);
+    return [];
+  }
+}
+
+export async function getProductById(id) {
+  try {
+    const response = await fetch(`http://localhost:5000/producto/${id}`);
+    const data = await response.json();
+    return data[0];
   } catch (error) {
     console.log("Error fetching products:", error);
     return [];

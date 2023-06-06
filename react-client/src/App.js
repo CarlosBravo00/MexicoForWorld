@@ -8,6 +8,7 @@ import ShoppingCart from "./pages/shoppingCart";
 import Checkout from "./pages/checkout";
 import WorkInProgressPage from "./pages/workInProgress";
 import NotFoundPage from "./pages/notFound";
+import ProductPage from "./pages/productPage";
 import Header from "./components/header";
 import { CartProvider } from "./services/CartContext";
 import { LoginCall, AdminLoginCall } from "./services/apiCalls";
@@ -77,6 +78,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={routeElement} />
           <Route path="/register" element={<UserRegister />} />
+          <Route path="/product/:id" element={<ProductPage />} />
           {isLoggedIn ? (
             <>
               <Route path="/cart" element={<ShoppingCart />} />
