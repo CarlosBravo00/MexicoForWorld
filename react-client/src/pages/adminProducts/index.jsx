@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Button,
   Typography,
@@ -20,15 +20,15 @@ import AddProductDialog from "../../components/addProductAdminPopUp";
 import AddCategoryDialog from "../../components/addCategoryAdminPopUp";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+import { SnackbarContext } from "../../services/snackbarContext";
+
 import "./style.css";
 
 export default function AdminProductlist({ onLogout }) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const showSnackbar = useContext(SnackbarContext);
+
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [openAddProductDialog, setOpenAddProductDialog] = useState(false);
   const [openAddCategoryDialog, setOpenAddCategoryDialog] = useState(false);
@@ -70,34 +70,11 @@ export default function AdminProductlist({ onLogout }) {
     await addCategoryCall({ nombreCategoria });
     setOpenAddCategoryDialog(false);
     await fetchData();
-    triggerSnackbar("Categoria Creada");
+    showSnackbar("Category Created");
   };
-
-  function triggerSnackbar(message) {
-    setSnackbarMessage(message);
-    setIsSnackbarOpen(true);
-  }
 
   return (
     <>
-      <Snackbar
-        open={isSnackbarOpen}
-        autoHideDuration={1000}
-        onClose={() => {
-          setIsSnackbarOpen(false);
-        }}
-        style={{ top: "5%", left: "50%", transform: "translate(-50%, -50%)" }}
-      >
-        <MuiAlert
-          onClose={() => {
-            setIsSnackbarOpen(false);
-          }}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          {snackbarMessage}
-        </MuiAlert>
-      </Snackbar>
       <div
         style={{
           paddingTop: "30px",
@@ -110,7 +87,7 @@ export default function AdminProductlist({ onLogout }) {
           variant="h4"
           style={{ textAlign: "center", color: "#61dafb" }}
         >
-          Portal Administrativo
+          Administrative Portal
         </Typography>
         <Button
           color="primary"
@@ -129,18 +106,19 @@ export default function AdminProductlist({ onLogout }) {
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "end",
+          alignItems: "end",
+          width: "90%"
         }}
       >
-        <div style={{ justifySelf: "center", alignSelf: "center" }}>
+        <div>
           <Button
             variant="contained"
             color="primary"
             onClick={handleAddProduct}
             style={{ marginLeft: "16px" }}
           >
-            Añadir Nuevo Producto
+            Add Product
           </Button>
           <Button
             variant="contained"
@@ -150,7 +128,7 @@ export default function AdminProductlist({ onLogout }) {
             }}
             style={{ marginLeft: "16px" }}
           >
-            Añadir Nueva Categoría
+            Add Category
           </Button>
         </div>
       </div>
@@ -158,13 +136,14 @@ export default function AdminProductlist({ onLogout }) {
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}
       >
-        <TableContainer style={{ width: "75%" }}>
+        <TableContainer style={{ width: "90%" }}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
-                <TableCell>Nombre</TableCell>
-                <TableCell>Descripción</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Description</TableCell>
+                <TableCell>Price</TableCell>
                 <TableCell></TableCell>
                 <TableCell></TableCell> {/* Add this line */}
               </TableRow>
@@ -175,6 +154,7 @@ export default function AdminProductlist({ onLogout }) {
                   <TableCell>{product.id}</TableCell>
                   <TableCell>{product.nombreProducto}</TableCell>
                   <TableCell>{product.descripcion}</TableCell>
+                  <TableCell>${product.precio}</TableCell>
                   <TableCell>
                     <div style={{ display: "flex", gap: "8px" }}>
                       <IconButton
@@ -213,7 +193,9 @@ export default function AdminProductlist({ onLogout }) {
           isEdit={selectedProduct ? true : false}
           handleClose={() => setOpenAddProductDialog(false)}
           handleConfirm={() => {
-            triggerSnackbar("Producto Creado/Editado");
+            showSnackbar(
+              selectedProduct ? "Product Edited" : "Product Created"
+            );
             setOpenAddProductDialog(false);
             fetchData();
           }}

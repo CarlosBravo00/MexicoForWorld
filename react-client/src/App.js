@@ -12,6 +12,7 @@ import ProductPage from "./pages/productPage";
 import Header from "./components/header";
 import UserPage from "./pages/userPage";
 import { CartProvider } from "./services/CartContext";
+import { SnackbarProvider } from "./services/snackbarContext";
 import { LoginCall, AdminLoginCall } from "./services/apiCalls";
 
 export default function App() {
@@ -74,26 +75,28 @@ export default function App() {
 
   return (
     <Router>
-      <CartProvider>
-        {isLoggedIn && !isAdmin ? <Header onLogout={handleLogout} /> : null}
-        <Routes>
-          <Route path="/" element={routeElement} />
-          <Route path="/register" element={<UserRegister />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          {isLoggedIn ? (
-            <>
-              <Route path="/cart" element={<ShoppingCart />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/about" element={<WorkInProgressPage />} />
-              <Route path="/featured" element={<WorkInProgressPage />} />
-              <Route path="/promotions" element={<WorkInProgressPage />} />
-              <Route path="/settings" element={<WorkInProgressPage />} />
-              <Route path="/profile" element={<UserPage />} />
-            </>
-          ) : null}
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </CartProvider>
+      <SnackbarProvider>
+        <CartProvider>
+          {isLoggedIn && !isAdmin ? <Header onLogout={handleLogout} /> : null}
+          <Routes>
+            <Route path="/" element={routeElement} />
+            <Route path="/register" element={<UserRegister />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            {isLoggedIn ? (
+              <>
+                <Route path="/cart" element={<ShoppingCart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/about" element={<WorkInProgressPage />} />
+                <Route path="/featured" element={<WorkInProgressPage />} />
+                <Route path="/promotions" element={<WorkInProgressPage />} />
+                <Route path="/settings" element={<WorkInProgressPage />} />
+                <Route path="/profile" element={<UserPage />} />
+              </>
+            ) : null}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </CartProvider>
+      </SnackbarProvider>
     </Router>
   );
 }

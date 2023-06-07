@@ -229,7 +229,7 @@ app.post("/ordenes", (req, res) => {
   const orden = req.body;
   console.log(orden);
   executeQuery(
-    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId, total) VALUES (CURRENT_DATE(), '${orden.cantidadProductos}', '${orden.usuarioId}', '${orden.total}');
+    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId, total) VALUES (NOW(), '${orden.cantidadProductos}', '${orden.usuarioId}', '${orden.total}');
     `,
     (err, result) => {
       if (err) throw err;

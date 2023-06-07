@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { getProductById } from "../../services/apiCalls";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../services/CartContext";
+import { SnackbarContext } from "../../services/snackbarContext";
 import mapaMexico from "../../images/mapaMexico.webp";
 import ProductImage from "../../components/productImage";
 
@@ -10,6 +11,8 @@ import "./style.css";
 const ProductPage = () => {
   const { id } = useParams();
   const { addItemToCart } = useContext(CartContext);
+  const showSnackbar = useContext(SnackbarContext);
+
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -27,6 +30,7 @@ const ProductPage = () => {
 
   const handleAddToCart = (product) => {
     const productWithQuantity = { ...product, cantidad: 1 };
+    showSnackbar("Product added to cart");
     addItemToCart(productWithQuantity);
   };
 

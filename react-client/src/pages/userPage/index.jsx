@@ -17,7 +17,15 @@ const UserPage = () => {
 
       const response = await getUserOrders({ userId });
       console.log(response);
-      setOrders(response);
+
+      // Sort orders by date in descending order
+      const sortedOrders = response.sort((a, b) => {
+        const dateA = new Date(a.fechaCreacion);
+        const dateB = new Date(b.fechaCreacion);
+        return dateB - dateA;
+      });
+
+      setOrders(sortedOrders);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
@@ -46,8 +54,11 @@ const UserPage = () => {
               <Typography variant="subtitle1">
                 {order.cantidadProductos} Products
               </Typography>
-              <Typography variant="subtitle1">
-                {new Date(order.fechaCreacion).toLocaleDateString("en-GB")}
+              <Typography
+                variant="subtitle1"
+                style={{ fontWeight: "bold", fontSize: "18px" }}
+              >
+                {new Date(order.fechaCreacion).toString().substring(0, 25)}
               </Typography>
             </div>
             <List>

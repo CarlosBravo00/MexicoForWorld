@@ -33,7 +33,7 @@ CREATE TABLE producto (
 
 CREATE TABLE ordenes (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    fechaCreacion DATE,
+    fechaCreacion DATETIME,
     cantidadProductos INT,
     usuarioId INT,
     total FLOAT

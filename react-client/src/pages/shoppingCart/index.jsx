@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../services/CartContext";
+import { SnackbarContext } from "../../services/snackbarContext";
 import { addOrderCall } from "../../services/apiCalls";
 import { Typography, Button, IconButton } from "@mui/material";
 import ProductImage from "../../components/productImage";
@@ -12,6 +13,8 @@ import "./style.css";
 
 const CartPage = () => {
   const navigate = useNavigate();
+
+  const showSnackbar = useContext(SnackbarContext);
 
   const {
     cartItems,
@@ -47,7 +50,7 @@ const CartPage = () => {
         productos: cartItems,
         total: calculateTotalPrice().toFixed(2),
       });
-      alert("Orden Creada");
+      showSnackbar("Orden Creada");
       clearCart();
       navigate("/profile");
     }

@@ -59,11 +59,11 @@ export default function Login({ onLogin }) {
             sx={{ marginTop: "1rem" }}
             className="submit-button"
           >
-            Iniciar sesión
+            Login
           </Button>
         </form>
         <div style={{ marginTop: "1rem", textAlign: "center" }}>
-          <Link to="/register">Registro</Link>
+          <Link to="/register">Register</Link>
         </div>
       </div>
     </div>

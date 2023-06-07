@@ -7,19 +7,17 @@ import {
 import { Select, MenuItem, Typography } from "@mui/material";
 import { CartContext } from "../../services/CartContext";
 import Footer from "../../components/footer";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+import { SnackbarContext } from "../../services/snackbarContext";
 import Product from "../../components/product";
 import "./style.css";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const { addItemToCart } = useContext(CartContext); // Adición de contexto
+  const { addItemToCart } = useContext(CartContext);
+  const showSnackbar = useContext(SnackbarContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -48,12 +46,7 @@ export default function Home() {
   const handleAddToCart = (product) => {
     const productWithQuantity = { ...product, cantidad: 1 };
     addItemToCart(productWithQuantity);
-    setSnackbarMessage("Product added to cart");
-    setIsSnackbarOpen(true);
-  };
-
-  const handleCloseSnackbar = () => {
-    setIsSnackbarOpen(false);
+    showSnackbar("Product added to cart");
   };
 
   return (
@@ -104,20 +97,6 @@ export default function Home() {
         ))}
       </div>
       <Footer />
-      <Snackbar
-        open={isSnackbarOpen}
-        autoHideDuration={1000}
-        onClose={handleCloseSnackbar}
-        style={{ top: "5%", left: "50%", transform: "translate(-50%, -50%)" }}
-      >
-        <MuiAlert
-          onClose={handleCloseSnackbar}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          {snackbarMessage}
-        </MuiAlert>
-      </Snackbar>
     </div>
   );
 }
