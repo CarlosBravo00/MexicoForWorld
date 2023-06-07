@@ -66,7 +66,7 @@ export default function Home() {
         }}
       >
         <Typography variant="h4" className="title-text">
-          ¡Productos Orgullosamente Mexicanos!
+          Proud Mexican Products!
         </Typography>
         <div
           style={{
@@ -78,7 +78,7 @@ export default function Home() {
           }}
         >
           <Typography style={{ whiteSpace: "nowrap" }}>
-            Estado de Origen
+            Location of Origin
           </Typography>
           <Select
             className="select-category"

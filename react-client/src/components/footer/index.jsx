@@ -6,17 +6,16 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="company-info">
-        <h2>Información de la empresa</h2>
+        <h2>Company Information</h2>
         <p>MEXICO FOR THE WORLD SA DE CV</p>
         <p>
-          Somos una empresa dedicada a compartir la riqueza de los productos
-          típicos y originarios de México. Nuestro objetivo es acercar a
-          personas de todo el mundo a la diversidad y autenticidad de la cultura
-          mexicana a través de sus sabores y tradiciones culinarias. Trabajamos
-          directamente con productores locales y artesanos para ofrecer
-          productos de la más alta calidad, elaborados de manera sostenible y
-          respetando las prácticas tradicionales. ¡Únete a nosotros y descubre
-          la auténtica esencia de México en cada bocado!
+          We are a company dedicated to sharing the richness of typical and
+          indigenous products from Mexico. Our goal is to bring people from all
+          over the world closer to the diversity and authenticity of Mexican
+          culture through its flavors and culinary traditions. We work directly
+          with local producers and artisans to offer products of the highest
+          quality, made sustainably and respecting traditional practices. Join
+          us and discover the authentic essence of Mexico in every bite!
         </p>
       </div>
       {/* <div className="contact-form">
@@ -31,7 +30,7 @@ const Footer = () => {
         </div>
       </div> */}
       <div className="social-media">
-        <h2>Síguenos en redes sociales</h2>
+        <h2>Follow us on social media</h2>
         <div className="social-icons">
           <a
             href="https://facebook.com"
@@ -63,7 +62,7 @@ const Footer = () => {
           </a>
         </div>
         <p>
-          Nos pueden contactar a los siguientes telefonos: 9999494949 &
+          You can contact us at the following phone numbers: 9999494949 &
           123124512
         </p>
       </div>

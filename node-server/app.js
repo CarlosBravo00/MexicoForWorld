@@ -229,7 +229,7 @@ app.post("/ordenes", (req, res) => {
   const orden = req.body;
   console.log(orden);
   executeQuery(
-    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId) VALUES (CURRENT_DATE(), '${orden.cantidadProductos}', '${orden.usuarioId}');
+    `INSERT INTO ordenes (fechaCreacion, cantidadProductos, usuarioId, total) VALUES (CURRENT_DATE(), '${orden.cantidadProductos}', '${orden.usuarioId}', '${orden.total}');
     `,
     (err, result) => {
       if (err) throw err;
@@ -274,7 +274,7 @@ app.get("/usuario/ordenes/:id", (req, res) => {
   const id = req.params.id;
 
   const query = `
-  SELECT o.*, p.nombreProducto, p.descripcion, p.imagenId, op.cantidad
+  SELECT o.*, p.nombreProducto, p.descripcion, p.imagenId, p.precio, op.cantidad
   FROM ordenes AS o
   JOIN ordenes_products AS op ON o.id = op.ordenID
   JOIN producto AS p ON op.productoId = p.id
@@ -291,6 +291,7 @@ app.get("/usuario/ordenes/:id", (req, res) => {
         descripcion,
         imagenId,
         cantidad,
+        precio,
         ...orderData
       } = row;
 
@@ -307,6 +308,7 @@ app.get("/usuario/ordenes/:id", (req, res) => {
         descripcion,
         imagenId,
         cantidad,
+        precio,
       });
     });
 

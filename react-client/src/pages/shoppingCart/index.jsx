@@ -13,8 +13,13 @@ import "./style.css";
 const CartPage = () => {
   const navigate = useNavigate();
 
-  const { cartItems, removeItemFromCart, clearCart, updateItemQuantity } =
-    useContext(CartContext);
+  const {
+    cartItems,
+    removeItemFromCart,
+    clearCart,
+    updateItemQuantity,
+    calculateTotalPrice,
+  } = useContext(CartContext);
 
   const handleRemoveItem = (itemId) => {
     removeItemFromCart(itemId);
@@ -40,6 +45,7 @@ const CartPage = () => {
         cantidadProductos,
         usuarioId,
         productos: cartItems,
+        total: calculateTotalPrice().toFixed(2),
       });
       alert("Orden Creada");
       clearCart();
@@ -91,13 +97,35 @@ const CartPage = () => {
                     </IconButton>
                   </div>
                 </div>
-                <IconButton
-                  className="botoneliminar"
-                  onClick={() => handleRemoveItem(item.id)}
-                  style={{ color: "red" }}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyItems: "center",
+                  }}
                 >
-                  <DeleteIcon />
-                </IconButton>
+                  <IconButton
+                    className="botoneliminar"
+                    onClick={() => handleRemoveItem(item.id)}
+                    style={{ color: "red" }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                  <p
+                    style={{
+                      marginTop: "5px",
+                      fontSize: "20px",
+                      color: "#888",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    $
+                    {(item.precio * item.cantidad).toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
@@ -109,6 +137,19 @@ const CartPage = () => {
             >
               Clear Cart
             </Button>
+            <p
+              style={{
+                marginTop: "5px",
+                fontSize: "24px",
+                color: "#888",
+                fontWeight: "bold",
+              }}
+            >
+              Total: $
+              {calculateTotalPrice().toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+              })}
+            </p>
             <Button
               variant="contained"
               className="checkout-button"

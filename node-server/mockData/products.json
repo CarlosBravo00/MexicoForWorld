@@ -1,86 +1,98 @@
 [
   {
-    "nombreProducto": "Outfit Tulum",
+    "nombreProducto": "Tulum Outfit",
     "id": 1,
     "categoriaId": 1,
-    "descripcion": "Estilo de ropa comun usado en la region de tulum donde uno puede estar fresco y a la moda.",
-    "imagenId": "TulumStyle.jpeg"
+    "descripcion": "Common clothing style used in the Tulum region where one can stay cool and fashionable.",
+    "imagenId": "TulumStyle.jpeg",
+    "precio": 99.99
   },
   {
-    "nombreProducto": "Outfit Tulum",
+    "nombreProducto": "Tulum Outfit",
     "id": 2,
     "categoriaId": 1,
-    "descripcion": "Estilo de ropa comun usado en la region de tulum donde uno puede estar fresco y a la moda.",
-    "imagenId": "TulumStyle2.jpg"
+    "descripcion": "Common clothing style used in the Tulum region where one can stay cool and fashionable.",
+    "imagenId": "TulumStyle2.jpg",
+    "precio": 89.5
   },
   {
-    "nombreProducto": "Primera Equipacion Deportiva Mexico",
+    "nombreProducto": "Mexico First Sports Kit",
     "id": 3,
     "categoriaId": 2,
-    "descripcion": "Camisa oficial de la seleccion de Mexico para el mundial de futbol 2022.",
-    "imagenId": "Mexicoshirt.webp"
+    "descripcion": "Official shirt of the Mexico national team for the 2022 World Cup.",
+    "imagenId": "Mexicoshirt.webp",
+    "precio": 77.75
   },
   {
-    "nombreProducto": "Segunda Equipacion Deportiva Mexico",
+    "nombreProducto": "Mexico First Sports Kit",
     "id": 4,
     "categoriaId": 2,
-    "descripcion": "Camisa oficial de la seleccion de Mexico para el mundial de futbol 2022.",
-    "imagenId": "Mexicoshirt2.webp"
+    "descripcion": "Official shirt of the Mexico national team for the 2022 World Cup.",
+    "imagenId": "Mexicoshirt2.webp",
+    "precio": 65.25
   },
   {
-    "nombreProducto": "Bandera de Mexico",
+    "nombreProducto": "Mexican Flag",
     "id": 5,
     "categoriaId": 2,
-    "descripcion": "Bandera Ofical de Mexico para usar en conciertos, festivales, etc.",
-    "imagenId": "MexicoBandera.webp"
+    "descripcion": "Official flag of Mexico to use in concerts, festivals, etc.",
+    "imagenId": "MexicoBandera.webp",
+    "precio": 44.9
   },
   {
-    "nombreProducto": "Banderas miniatura de Mexico",
+    "nombreProducto": "Miniature Mexican Flags",
     "id": 6,
     "categoriaId": 2,
-    "descripcion": "Bandera Ofical de Mexico para usar de decoracion en oficinas o casas.",
-    "imagenId": "MexicoBandera2.png"
+    "descripcion": "Official flag of Mexico to use for decoration in offices or homes.",
+    "imagenId": "MexicoBandera2.png",
+    "precio": 35.1
   },
   {
-    "nombreProducto": "Hipil Clasico Yucateco",
+    "nombreProducto": "Traditional Yucatecan Hipil",
     "id": 7,
     "categoriaId": 3,
-    "descripcion": "Vestido original hecho en yucatan para lucir en eventos especiales.",
-    "imagenId": "Hipil.jpeg"
+    "descripcion": "Original dress made in Yucatan to wear at special events.",
+    "imagenId": "Hipil.jpeg",
+    "precio": 123.45
   },
   {
-    "nombreProducto": "Hipil Moderno Yucateco",
+    "nombreProducto": "Modern Yucatecan Hipil",
     "id": 8,
     "categoriaId": 3,
-    "descripcion": "Vestido original hecho en yucatan para lucir en eventos especiales.",
-    "imagenId": "Hipil2.jpg"
+    "descripcion": "Original dress made in Yucatan to wear at special events.",
+    "imagenId": "Hipil2.jpg",
+    "precio": 234.56
   },
   {
-    "nombreProducto": "Guayabera",
+    "nombreProducto": "Guayabera Shirt",
     "id": 9,
     "categoriaId": 3,
-    "descripcion": "Guayabera hecha en la ciudad de valladolid ideal para lucir en eventos importantes",
-    "imagenId": "Guayabera.webp"
+    "descripcion": "Guayabera made in the city of Valladolid ideal to wear at important events.",
+    "imagenId": "Guayabera.webp",
+    "precio": 345.67
   },
   {
-    "nombreProducto": "Guayabera Regional",
+    "nombreProducto": "Regional Guayabera Shirt",
     "id": 10,
     "categoriaId": 3,
-    "descripcion": "Guayabera hecha en la ciudad de valladolid ideal para lucir en eventos importantes",
-    "imagenId": "Guayabera2.webp"
+    "descripcion": "Guayabera made in the city of Valladolid ideal to wear at important events.",
+    "imagenId": "Guayabera2.webp",
+    "precio": 456.78
   },
   {
-    "nombreProducto": "Cafe Oaxaqueño",
+    "nombreProducto": "Oaxacan Coffee",
     "id": 11,
     "categoriaId": 4,
-    "descripcion": "Cafe originario del estado de oaxaca con un toque especial",
-    "imagenId": "CafeOaxaca.jpg"
+    "descripcion": "Coffee originating from the state of Oaxaca with a special touch.",
+    "imagenId": "CafeOaxaca.jpg",
+    "precio": 567.89
   },
   {
-    "nombreProducto": "Cafe Oaxaca",
+    "nombreProducto": "Oaxaca Coffee",
     "id": 12,
     "categoriaId": 4,
-    "descripcion": "Cafe originario del estado de oaxaca con un toque especial",
-    "imagenId": "CafeOaxaca2.jpg"
+    "descripcion": "Coffee originating from the state of Oaxaca with a special touch.",
+    "imagenId": "CafeOaxaca2.jpg",
+    "precio": 678.9
   }
 ]

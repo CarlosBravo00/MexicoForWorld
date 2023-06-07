@@ -2,3 +2,53 @@
   display: inline;
   margin-right: 20px;
 }
+
+.product button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-self: end;
+  align-self: end;
+}
+
+.product button:hover {
+  background-color: #0056b3;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fefefe;
+  height: 90%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.product img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 1px dotted rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.product h3 {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 0;
+}
+
+.product p {
+  font-size: 16px;
+  text-align: justify;
+  margin-bottom: 10px;
+}

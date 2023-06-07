@@ -21,11 +21,32 @@ export default function Product(props) {
         style={{ cursor: "pointer" }}
         onClick={handleClick}
       />
-
       <p onClick={handleClick} style={{ cursor: "pointer" }}>
         {product.descripcion}
       </p>
-      <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: "5px",
+        }}
+      >
+        <p
+          className="price-text"
+          style={{
+            marginTop: "5px",
+            fontSize: "20px",
+            color: "#888",
+            fontWeight: "bold",
+          }}
+        >
+          ${product.precio}
+        </p>
+        <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+      </div>
     </div>
   );
 }

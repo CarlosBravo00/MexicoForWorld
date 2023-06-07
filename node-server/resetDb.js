@@ -30,12 +30,13 @@ async function addProducts() {
   const productos = JSON.parse(jsonData);
 
   const insertProductoQuery =
-    "INSERT INTO producto (nombreProducto, descripcion, imagenId, categoriaId) VALUES ?";
+    "INSERT INTO producto (nombreProducto, descripcion, imagenId, categoriaId, precio) VALUES ?";
   const productoValues = productos.map((producto) => [
     producto.nombreProducto,
     producto.descripcion,
     producto.imagenId,
     producto.categoriaId,
+    producto.precio
   ]);
   await executeQuery(insertProductoQuery, [productoValues]);
   console.log("Products Added");

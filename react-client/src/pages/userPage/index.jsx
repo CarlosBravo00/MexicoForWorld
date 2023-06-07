@@ -44,7 +44,7 @@ const UserPage = () => {
           <div className="order-container" key={order.id}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Typography variant="subtitle1">
-                {order.cantidadProductos} Productos
+                {order.cantidadProductos} Products
               </Typography>
               <Typography variant="subtitle1">
                 {new Date(order.fechaCreacion).toLocaleDateString("en-GB")}
@@ -60,11 +60,49 @@ const UserPage = () => {
                     ></ProductImage>
                     <ListItemText
                       primary={product.nombreProducto}
-                      secondary={`Cantidad: ${product.cantidad}`}
+                      secondary={`Quantity: ${product.cantidad}`}
                     />
+                    <p
+                      style={{
+                        marginTop: "5px",
+                        fontSize: "15px",
+                        color: "#888",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      $
+                      {(product.precio * product.cantidad).toLocaleString(
+                        undefined,
+                        {
+                          minimumFractionDigits: 2,
+                        }
+                      )}
+                    </p>
                   </ListItem>
                 ))}
             </List>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "end",
+                justifyContent: "end",
+              }}
+            >
+              <p
+                className="price-text"
+                style={{
+                  marginTop: "5px",
+                  fontSize: "20px",
+                  color: "#888",
+                  fontWeight: "bold",
+                }}
+              >
+                Total: $
+                {order.total.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                })}
+              </p>
+            </div>
           </div>
         ))}
     </div>

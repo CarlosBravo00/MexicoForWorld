@@ -24,9 +24,10 @@ CREATE TABLE categoria (
 CREATE TABLE producto (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombreProducto VARCHAR(100),
-    descripcion VARCHAR(100),
+    descripcion VARCHAR(500),
     imagenId VARCHAR(100),
     categoriaId INT,
+    precio FLOAT,
     FOREIGN KEY (categoriaId) REFERENCES categoria (id)
 );
 
@@ -34,7 +35,8 @@ CREATE TABLE ordenes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     fechaCreacion DATE,
     cantidadProductos INT,
-    usuarioId INT
+    usuarioId INT,
+    total FLOAT
 );
 
 CREATE TABLE ordenes_products (
@@ -42,6 +44,10 @@ CREATE TABLE ordenes_products (
     productoId INT,
     ordenID INT,
     cantidad INT,
-    FOREIGN KEY (productoId) REFERENCES producto (id) ON DELETE SET NULL,
-    FOREIGN KEY (ordenID) REFERENCES ordenes (id) ON DELETE SET NULL
+    FOREIGN KEY (productoId) REFERENCES producto (id) ON DELETE
+    SET
+        NULL,
+        FOREIGN KEY (ordenID) REFERENCES ordenes (id) ON DELETE
+    SET
+        NULL
 )

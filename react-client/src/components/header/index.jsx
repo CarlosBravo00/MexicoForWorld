@@ -76,10 +76,10 @@ const Header = (props) => {
       </div>
       <div className="bottom-section">
         <div className="nav-links">
-          <Link to="/">Productos</Link>
-          <Link to="/about">Nosotros</Link>
-          <Link to="/featured">Destacados</Link>
-          <Link to="/promotions">Promociones</Link>
+          <Link to="/">Products</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/featured">Featured</Link>
+          <Link to="/promotions">Promotions</Link>
         </div>
       </div>
     </div>
