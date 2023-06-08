@@ -43,6 +43,17 @@ const ProductPage = () => {
         <div className="product-details">
           <h1>{product.nombreProducto}</h1>
           <p>{product.descripcion}</p>
+          <p
+            style={{
+              marginTop: "5px",
+              marginBottom: "0px",
+              fontSize: "24px",
+              color: "#888",
+              fontWeight: "bold",
+            }}
+          >
+            ${product.precio}
+          </p>{" "}
           <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
           <img src={mapaMexico} alt="mapa" className="map-container"></img>
         </div>

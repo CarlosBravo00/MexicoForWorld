@@ -33,6 +33,7 @@ export default function AddProductDialog({
     product ? product.categoriaId : ""
   );
   const [imagenId, setImagenId] = useState(product ? product.imagenId : "");
+  const [price, setPrice] = useState(product ? product.precio : "");
 
   const handleNombreChange = (event) => {
     setNombre(event.target.value);
@@ -46,6 +47,9 @@ export default function AddProductDialog({
   const handleImagenIdChange = (event) => {
     setImagenId(event.target.value);
   };
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
 
   async function handleSaveChanges() {
     if (isEdit) {
@@ -55,6 +59,7 @@ export default function AddProductDialog({
         descripcion,
         categoriaId: categoria,
         imagenId,
+        precio: price,
       });
     } else {
       await addProductCall({
@@ -62,6 +67,7 @@ export default function AddProductDialog({
         descripcion,
         categoriaId: categoria,
         imagenId,
+        precio: price,
       });
     }
     await handleConfirm();
@@ -78,7 +84,7 @@ export default function AddProductDialog({
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableCell>Nombre</TableCell>
+                  <TableCell>Name</TableCell>
                   <TableCell>
                     <TextField
                       size="small"
@@ -89,7 +95,7 @@ export default function AddProductDialog({
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Descripción</TableCell>
+                  <TableCell>Description</TableCell>
                   <TableCell>
                     <TextField
                       multiline
@@ -101,7 +107,7 @@ export default function AddProductDialog({
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Categoría</TableCell>
+                  <TableCell>Category</TableCell>
                   <TableCell>
                     <FormControl style={{ minWidth: "100%" }}>
                       <Select
@@ -120,12 +126,23 @@ export default function AddProductDialog({
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Imagen ID</TableCell>
+                  <TableCell>Image ID</TableCell>
                   <TableCell>
                     <TextField
                       size="small"
                       value={imagenId}
                       onChange={handleImagenIdChange}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Price</TableCell>
+                  <TableCell>
+                    <TextField
+                      type="number"
+                      size="small"
+                      value={price}
+                      onChange={handlePriceChange}
                     />
                   </TableCell>
                 </TableRow>
@@ -135,14 +152,14 @@ export default function AddProductDialog({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancelar
+            Cancel
           </Button>
           <Button
             variant="contained"
             color="primary"
             onClick={handleSaveChanges}
           >
-            Añadir Producto
+            Add Product
           </Button>
         </DialogActions>
       </div>

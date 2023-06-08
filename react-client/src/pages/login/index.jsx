@@ -32,7 +32,7 @@ export default function Login({ onLogin }) {
           <TextField
             fullWidth
             type="text"
-            label="Nombre de usuario"
+            label="Username"
             variant="outlined"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
@@ -42,7 +42,7 @@ export default function Login({ onLogin }) {
           <TextField
             fullWidth
             type="password"
-            label="Contraseña"
+            label="Password"
             variant="outlined"
             value={password}
             onChange={(event) => setPassword(event.target.value)}

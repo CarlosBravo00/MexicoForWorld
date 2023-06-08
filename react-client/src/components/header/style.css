@@ -1,5 +1,9 @@
 .header {
   display: flex;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 999;
   flex-direction: column;
   align-items: center;
   padding: 10px;
@@ -55,8 +59,8 @@
   color: white;
   background-color: purple;
   border-radius: 50%;
-  padding: 4px 8px;
-  font-size: 12px;
+  padding: 0px 8px 3px 8px;
+  font-size: 18px;
   cursor: pointer;
 }
 

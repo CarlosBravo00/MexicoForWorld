@@ -58,7 +58,7 @@ const UserPage = () => {
                 variant="subtitle1"
                 style={{ fontWeight: "bold", fontSize: "18px" }}
               >
-                {new Date(order.fechaCreacion).toString().substring(0, 25)}
+                {new Date(order.fechaCreacion).toString().substring(0, 21)}
               </Typography>
             </div>
             <List>

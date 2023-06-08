@@ -110,9 +110,9 @@ app.get("/productos/:id", (req, res) => {
 app.post("/producto", (req, res) => {
   const producto = req.body;
   executeQuery(
-    `INSERT INTO producto(nombreProducto, descripcion, categoriaId, imagenId) 
+    `INSERT INTO producto(nombreProducto, descripcion, categoriaId, imagenId, precio) 
     VALUES ('${producto.nombreProducto}', '${producto.descripcion}',
-     '${producto.categoriaId}', '${producto.imagenId}')`,
+     '${producto.categoriaId}', '${producto.imagenId}', '${producto.precio}')`,
     (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -130,7 +130,8 @@ app.put("/producto/:id", (req, res) => {
     SET nombreProducto='${producto.nombreProducto}',
     descripcion='${producto.descripcion}', 
     categoriaId='${producto.categoriaId}',
-    imagenId='${producto.imagenId}'
+    imagenId='${producto.imagenId}',
+    precio='${producto.precio}'
     WHERE id=${id}`,
     (err, result) => {
       if (err) throw err;

@@ -32,10 +32,10 @@ export default function AddCategoryDialog({
   return (
     <Dialog open={open} onClose={handleClose}>
       <div style={{ padding: "20px 30px 20px 30px" }}>
-        <DialogTitle>Añadir Nueva Categoría</DialogTitle>
+        <DialogTitle>Add New Cateogry</DialogTitle>
         <DialogContent style={{ marginTop: "10px" }}>
           <TextField
-            label="Nombre de Categoría"
+            placeholder="Name"
             size="small"
             value={categoryName}
             onChange={handleInputChange}
@@ -44,14 +44,14 @@ export default function AddCategoryDialog({
         </DialogContent>
         <DialogActions style={{ width: "90%" }}>
           <Button onClick={handleCancel} color="primary">
-            Cancelar
+            Cancel
           </Button>
           <Button
             variant="contained"
             color="primary"
             onClick={handleConfirmClick}
           >
-            Confirmar
+            Confirm
           </Button>
         </DialogActions>
       </div>

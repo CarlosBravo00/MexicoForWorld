@@ -30,6 +30,7 @@ export async function addProductCall({
   descripcion,
   categoriaId,
   imagenId,
+  precio,
 }) {
   const response = await fetch("http://localhost:5000/producto", {
     method: "POST",
@@ -41,6 +42,7 @@ export async function addProductCall({
       descripcion,
       categoriaId,
       imagenId,
+      precio,
     }),
   });
 
@@ -142,6 +144,7 @@ export async function editProduct({
   categoriaId,
   imagenId,
   productoId,
+  precio,
 }) {
   const response = await fetch(`http://localhost:5000/producto/${productoId}`, {
     method: "PUT",
@@ -153,6 +156,7 @@ export async function editProduct({
       descripcion,
       categoriaId,
       imagenId,
+      precio,
     }),
   });
 
