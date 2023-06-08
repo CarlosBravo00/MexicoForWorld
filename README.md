@@ -30,6 +30,14 @@ To run the client application, execute the following command:
 
 This command will start the development server for the client-side of the application. You can access the client in your browser by navigating to `http://localhost:3000` (or a different port if specified).
 
+### Reset Server
+
+If you need to reset the server, including the tables and mock initial data, you can use the following command:
+
+`npm run reset:server`
+
+This command will restart the server and restore the initial state. Use it when you want to start fresh with the server data.
+
 ### Run Server
 
 To run the server, execute the following command:
@@ -37,12 +45,6 @@ To run the server, execute the following command:
 `npm run start:server`
 
 This command will start the server-side of the application. Make sure the server is running before interacting with the client. The server might be accessible on a different URL or port depending on your configuration.
-
-### Run Server without SQL
-
-If you don't need to use SQL for your server, there is an alternative script available to run the server. Execute the following command:
-
-`npm run start:fake:server`
 
 ## Additional Information
 
